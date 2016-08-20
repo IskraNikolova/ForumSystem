@@ -8,11 +8,6 @@
     public class HomeController : Controller
     {
         private IRepository<Post> posts;
-        //DI
-        public HomeController() 
-            : this(new GenericRepository<Post>(new ApplicationDbContext()))
-        {            
-        }
 
         public HomeController(IRepository<Post> posts)
         {
