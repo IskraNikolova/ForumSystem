@@ -270,9 +270,9 @@
       <Project>{c1ba906d-2f84-400b-b2e9-d2b6ba93dd94}</Project>
       <Name>ForumSystem.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\ForumSystem.Models\ForumSystem.Models.csproj">
+    <ProjectReference Include="..\..\Data\ForumSystem.Models\ForumSystem.Data.Models.csproj">
       <Project>{45be66fe-064a-41b2-8db6-f956d9bb4030}</Project>
-      <Name>ForumSystem.Models</Name>
+      <Name>ForumSystem.Data.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

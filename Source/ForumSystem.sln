@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForumSystem.Common", "Forum
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForumSystem.Data", "Data\ForumSystem.Data\ForumSystem.Data.csproj", "{C1BA906D-2F84-400B-B2E9-D2B6BA93DD94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForumSystem.Models", "Data\ForumSystem.Models\ForumSystem.Models.csproj", "{45BE66FE-064A-41B2-8DB6-F956D9BB4030}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForumSystem.Data.Models", "Data\ForumSystem.Models\ForumSystem.Data.Models.csproj", "{45BE66FE-064A-41B2-8DB6-F956D9BB4030}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{326C2D11-70EA-44F5-B191-D7320EFBE187}"
 EndProject
