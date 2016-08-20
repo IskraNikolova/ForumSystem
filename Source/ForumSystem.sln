@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForumSystem.Web", "Web\Foru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForumSystem.Data.Common", "Data\ForumSystem.Data.Common\ForumSystem.Data.Common.csproj", "{6D2A1FBC-D661-47E5-BAC8-EEAEBE5D9E09}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForumSystem.Web.Infrastructure", "Web\ForumSystem.Web.Infrastructure\ForumSystem.Web.Infrastructure.csproj", "{E2B1E687-8DDC-4972-A340-CF2AC8639B42}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{6D2A1FBC-D661-47E5-BAC8-EEAEBE5D9E09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D2A1FBC-D661-47E5-BAC8-EEAEBE5D9E09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D2A1FBC-D661-47E5-BAC8-EEAEBE5D9E09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2B1E687-8DDC-4972-A340-CF2AC8639B42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2B1E687-8DDC-4972-A340-CF2AC8639B42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2B1E687-8DDC-4972-A340-CF2AC8639B42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2B1E687-8DDC-4972-A340-CF2AC8639B42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,5 +62,6 @@ Global
 		{45BE66FE-064A-41B2-8DB6-F956D9BB4030} = {9E97925B-73EF-4480-A319-363EDA3CA963}
 		{F819A35D-19D4-4D20-A725-06B2825C2258} = {C51932D7-D9BA-41AD-8AA2-2C107CD7EA87}
 		{6D2A1FBC-D661-47E5-BAC8-EEAEBE5D9E09} = {9E97925B-73EF-4480-A319-363EDA3CA963}
+		{E2B1E687-8DDC-4972-A340-CF2AC8639B42} = {C51932D7-D9BA-41AD-8AA2-2C107CD7EA87}
 	EndGlobalSection
 EndGlobal
