@@ -1,7 +1,6 @@
-﻿using System.Threading.Tasks;
-
-namespace ForumSystem.Models
+﻿namespace ForumSystem.Models
 {
+    using System.Threading.Tasks;
     using System.Security.Claims;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;

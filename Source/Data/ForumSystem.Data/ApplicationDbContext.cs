@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ForumSystem.Data
+﻿namespace ForumSystem.Data
 {
+    using System.Data.Entity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Migrations;
     using Models;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -14,11 +10,14 @@ namespace ForumSystem.Data
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
         }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+        public IDbSet<Tag> Tags { get; set; }
     }
 }
