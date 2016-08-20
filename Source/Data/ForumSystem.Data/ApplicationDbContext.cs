@@ -30,6 +30,8 @@
 
         public IDbSet<Tag> Tags { get; set; }
 
+        public IDbSet<Post> Posts { get; set; }
+
         private void ApplyAuditInfoRules()
         {
             // Approach via @julielerman: http://bit.ly/123661P

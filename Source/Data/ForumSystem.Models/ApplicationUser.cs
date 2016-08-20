@@ -1,6 +1,7 @@
 ﻿namespace ForumSystem.Models
 {
     using System;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Threading.Tasks;
     using System.Security.Claims;
     using Data.Common.Models;
@@ -28,6 +29,7 @@
 
         public DateTime? ModifiedOn { get; set; }
 
+        [Index]
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
