@@ -4,13 +4,21 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+    using System.Runtime.InteropServices;
     using AutoMapper;
 
     public class AutoMapperConfig
     {
+        private Assembly assembly;
+
+        public AutoMapperConfig(Assembly assembly)
+        {
+            this.assembly = assembly;
+        }
+
         public void Execute()
         {
-            var types = Assembly.GetExecutingAssembly().GetExportedTypes();
+            var types = this.assembly.GetExportedTypes();
 
             LoadStandardMappings(types);
 
@@ -32,7 +40,7 @@
 
             foreach (var map in maps)
             {
-                Mapper.Map(map.Source, map.Destination);
+                Mapper.CreateMap(map.Source, map.Destination);
             }
         }
 

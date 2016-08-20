@@ -4,6 +4,6 @@
 
     public interface IHaveCustomMappings
     {
-        void CreateMappings(IConfigurationProvider configuration);
+        void CreateMappings(IConfiguration configuration);
     }
 }

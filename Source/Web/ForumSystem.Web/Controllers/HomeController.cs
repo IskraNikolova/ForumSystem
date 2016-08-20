@@ -1,9 +1,10 @@
 ﻿namespace ForumSystem.Web.Controllers
 {
     using System.Web.Mvc;
-    using Data;
+    using AutoMapper.QueryableExtensions;
     using Data.Common.Repository;
     using ForumSystem.Models;
+    using ViewModels.Home;
 
     public class HomeController : Controller
     {
@@ -16,7 +17,7 @@
 
         public ActionResult Index()
         {
-            var allPosts = this.posts.All();
+            var allPosts = this.posts.All().Project().To<IndexBlogPostViewModel>();
             return this.View(allPosts);
         }
     }
