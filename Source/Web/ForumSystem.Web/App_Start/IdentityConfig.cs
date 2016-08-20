@@ -14,6 +14,9 @@ using ForumSystem.Web.Models;
 
 namespace ForumSystem.Web
 {
+    using Data;
+    using ForumSystem.Models;
+
     public class EmailService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)

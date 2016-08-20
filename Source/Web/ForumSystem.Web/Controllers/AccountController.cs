@@ -12,6 +12,8 @@ using ForumSystem.Web.Models;
 
 namespace ForumSystem.Web.Controllers
 {
+    using ForumSystem.Models;
+
     [Authorize]
     public class AccountController : Controller
     {
