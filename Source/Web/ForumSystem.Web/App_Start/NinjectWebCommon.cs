@@ -11,6 +11,7 @@ namespace ForumSystem.Web
     using Data;
     using Data.Common.Repository;
     using ForumSystem.Models;
+    using Infrastructure;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Common;
@@ -72,6 +73,8 @@ namespace ForumSystem.Web
             kernel.Bind(typeof(IDeletableEntityRepository<>)).To(typeof(DeletableEntityRepository<>));
 
             kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
+
+            kernel.Bind(typeof(ISanitizer)).To(typeof(HtmlSanitizerAdapter));
         }        
     }
 }

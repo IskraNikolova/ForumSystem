@@ -5,16 +5,19 @@
     using AutoMapper.QueryableExtensions;
     using Data.Common.Repository;
     using ForumSystem.Models;
+    using Infrastructure;
     using InputModels.Question;
     using ViewModels.Questions;
 
     public class QuestionsController : Controller
     {
-        private IDeletableEntityRepository<Post> posts;
+        private readonly IDeletableEntityRepository<Post> posts;
+        private readonly ISanitizer sanitizer;
 
-        public QuestionsController(IDeletableEntityRepository<Post> posts)
+        public QuestionsController(IDeletableEntityRepository<Post> posts, ISanitizer sanitizer)
         {
             this.posts = posts;
+            this.sanitizer = sanitizer;
         }
 
         public ActionResult Display(int id, string url, int page = 1)
@@ -53,7 +56,7 @@
                 var post = new Post
                 {
                     Title = input.Title,
-                    Content = input.Content
+                    Content = this.sanitizer.Sanitize(input.Content),
                     //TODO tags
                     //TODO author
                 };
