@@ -1,9 +1,12 @@
 ﻿namespace ForumSystem.Web.Controllers
 {
+    using System.Linq;
     using System.Web.Mvc;
+    using AutoMapper.QueryableExtensions;
     using Data.Common.Repository;
     using ForumSystem.Models;
     using InputModels.Question;
+    using ViewModels.Questions;
 
     public class QuestionsController : Controller
     {
@@ -16,7 +19,18 @@
 
         public ActionResult Display(int id, string url, int page = 1)
         {
-            return this.Content(id + " " + url);
+            var postViewModel = this.posts
+                .All()
+                .Where(p => p.Id == id)
+                .Project()
+                .To<QuestionDisplayViewModel>().FirstOrDefault();
+
+            if (postViewModel == null)
+            {
+                return this.HttpNotFound("Not found post.");
+            }
+
+            return this.View(postViewModel);
         }
 
         public ActionResult GetByTag(string tag)
