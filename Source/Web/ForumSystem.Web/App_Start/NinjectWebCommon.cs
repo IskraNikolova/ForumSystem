@@ -8,6 +8,7 @@ namespace ForumSystem.Web.App_Start
     using System.Web;
     using Data;
     using Data.Common.Repository;
+    using ForumSystem.Models;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
@@ -64,6 +65,8 @@ namespace ForumSystem.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<DbContext>().To<ApplicationDbContext>();
+
+            kernel.Bind(typeof(IRepository<Post>)).To(typeof(DeletableEntityRepository<Post>));
 
             kernel.Bind(typeof(IDeletableEntityRepository<>)).To(typeof(DeletableEntityRepository<>));
 
