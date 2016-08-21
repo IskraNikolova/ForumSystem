@@ -19,7 +19,8 @@
         [HttpGet]
         public ActionResult Ask()
         {
-            return this.Content("Get");
+            var model = new AskInputModel();
+            return this.View(model);
         }
 
         [HttpPost]
