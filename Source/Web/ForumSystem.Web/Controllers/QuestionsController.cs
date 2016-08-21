@@ -1,11 +1,19 @@
 ﻿namespace ForumSystem.Web.Controllers
 {
     using System.Web.Mvc;
+    using Data.Common.Repository;
+    using ForumSystem.Models;
     using InputModels.Question;
 
     public class QuestionsController : Controller
     {
-        // GET: Questions
+        private IDeletableEntityRepository<Post> posts;
+
+        public QuestionsController(IDeletableEntityRepository<Post> posts)
+        {
+            this.posts = posts;
+        }
+
         public ActionResult Display(int id, string url, int page = 1)
         {
             return this.Content(id + " " + url);
@@ -26,7 +34,23 @@
         [HttpPost]
         public ActionResult Ask(AskInputModel input)
         {
-            return this.Content("Post");
+            if (this.ModelState.IsValid)
+            {
+                var post = new Post
+                {
+                    Title = input.Title,
+                    Content = input.Content
+                    //TODO tags
+                    //TODO author
+                };
+
+                this.posts.Add(post);
+
+                this.posts.SaveChanges();
+                return this.RedirectToAction("Display", new {id = post.Id, url = "new"});
+            }
+
+            return this.View(input);
         }
     }
 }

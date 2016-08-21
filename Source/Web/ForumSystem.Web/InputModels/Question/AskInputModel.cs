@@ -5,14 +5,17 @@
 
     public class AskInputModel
     {
+        [Required]
         [Display(Name = "Title")]
         public string Title { get; set; }
 
+        [Required]
         [AllowHtml]
         [Display(Name = "Content")]
-        [DataType(DataType.MultilineText)]
+        [DataType("tinymce_full")]
         public string Content { get; set; }
 
+        //todo crearte validator
         [Display(Name = "Tags")]
         public string Tags { get; set; }
     }
