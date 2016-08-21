@@ -10,9 +10,14 @@
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Display question",
-                url: "questions/{id}/{url}",
-                defaults: new {  controller = "Questions", action = "Display"});
+                name: "Get question by ID",
+                url: "questions/tagged/{tag}",
+                defaults: new {  controller = "Questions", action = "GetByTag"});
+
+            routes.MapRoute(
+             name: "Display question",
+             url: "questions/{id}/{url}",
+             defaults: new { controller = "Questions", action = "Display" });
 
             routes.MapRoute(
                 name: "Default",
