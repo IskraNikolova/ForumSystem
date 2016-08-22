@@ -71,6 +71,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Web\ForumSystem.Web.Infrastructure\ForumSystem.Web.Infrastructure.csproj">
+      <Project>{e2b1e687-8ddc-4972-a340-cf2ac8639b42}</Project>
+      <Name>ForumSystem.Web.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ForumSystem.Data.Common\ForumSystem.Data.Common.csproj">
       <Project>{6d2a1fbc-d661-47e5-bac8-eeaebe5d9e09}</Project>
       <Name>ForumSystem.Data.Common</Name>

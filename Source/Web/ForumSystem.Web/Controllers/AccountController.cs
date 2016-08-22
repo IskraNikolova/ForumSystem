@@ -13,6 +13,7 @@ using ForumSystem.Web.Models;
 namespace ForumSystem.Web.Controllers
 {
     using ForumSystem.Models;
+    using Infrastructure.Mapping;
 
     [Authorize]
     public class AccountController : Controller

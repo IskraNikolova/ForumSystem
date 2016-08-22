@@ -11,16 +11,19 @@
     using ForumSystem.Models;
     using Infrastructure;
     using InputModels.Question;
+    using Microsoft.Ajax.Utilities;
     using ViewModels.Questions;
 
     public class QuestionsController : Controller
     {
         private readonly IDeletableEntityRepository<Post> posts;
+        private readonly IDeletableEntityRepository<ApplicationUser> users;
         private readonly ISanitizer sanitizer;
 
-        public QuestionsController(IDeletableEntityRepository<Post> posts, ISanitizer sanitizer)
+        public QuestionsController(IDeletableEntityRepository<Post> posts, IDeletableEntityRepository<ApplicationUser> users, ISanitizer sanitizer)
         {
             this.posts = posts;
+            this.users = users;
             this.sanitizer = sanitizer;
         }
 
@@ -28,7 +31,7 @@
         {
             var postViewModel = this.posts
                 .All()
-                .Include(p=>p.Author)
+                .Include(p => p.Author)
                 .Where(p => p.Id == id)
                 .Project()
                 .To<QuestionDisplayViewModel>().FirstOrDefault();
@@ -43,7 +46,21 @@
 
         public ActionResult GetByTag(string tag)
         {
-            return this.Content(tag);
+            List<Post> postsWithSameTag = new List<Post>();
+            ////var tagMy = new Tag
+            ////{
+            ////    Name = tag,
+            ////};
+
+            ////foreach (var post in this.posts.All())
+            ////{
+            ////    if (post.Tags.Contains(tagMy))
+            ////    {
+            ////        postsWithSameTag.Add(post);
+            ////    }
+            ////}
+            
+            return this.Content(string.Join("\n", postsWithSameTag));
         }
 
         [HttpGet]
@@ -58,6 +75,7 @@
         public ActionResult Ask(AskInputModel input)
         {
             var tags = input.Tags.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
+                       
             List<Tag> myTags = new List<Tag>();
             foreach (var tag in tags)
             {
@@ -69,6 +87,8 @@
                 myTags.Add(myTag);
             }
 
+            var author = this.users.All().Where(u => u.UserName == this.User.Identity.Name).FirstOrDefault();
+
             if (this.ModelState.IsValid)
             {
                 var post = new Post
@@ -76,13 +96,12 @@
                     Title = input.Title,
                     Content = this.sanitizer.Sanitize(input.Content),
                     Tags = myTags,
-                    Author = input.Author
-
+                    Author = author
                 };
 
                 this.posts.Add(post);
                 this.posts.SaveChanges();
-               // return this.RedirectToAction("Display", new {id = post.Id, url = "new"});
+                return this.RedirectToAction("Display", new {id = post.Id, url = "new"});
             }
 
             return this.View(input);

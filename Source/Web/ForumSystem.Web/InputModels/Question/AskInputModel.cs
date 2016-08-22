@@ -6,6 +6,10 @@
 
     public class AskInputModel
     {
+        public AskInputModel()
+        {
+        }
+
         [Required]
         [Display(Name = "Title")]
         public string Title { get; set; }
