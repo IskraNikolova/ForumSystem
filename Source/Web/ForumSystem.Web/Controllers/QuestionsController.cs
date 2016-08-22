@@ -16,7 +16,7 @@
     public class QuestionsController : Controller
     {
         private readonly IDeletableEntityRepository<Post> posts;
-        private DeletableEntityRepository<Post> db = new DeletableEntityRepository<Post>(new ApplicationDbContext());
+        private ApplicationDbContext db = new ApplicationDbContext();
         private readonly ISanitizer sanitizer;
 
         public QuestionsController(IDeletableEntityRepository<Post> posts, ISanitizer sanitizer)
@@ -58,6 +58,7 @@
         public ActionResult Ask(AskInputModel input)
         {
             var tags = input.Tags.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
+
             List<Tag> myTags = new List<Tag>();
             foreach (var tag in tags)
             {
