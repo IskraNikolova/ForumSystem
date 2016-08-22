@@ -16,7 +16,6 @@
     public class QuestionsController : Controller
     {
         private readonly IDeletableEntityRepository<Post> posts;
-        private ApplicationDbContext db = new ApplicationDbContext();
         private readonly ISanitizer sanitizer;
 
         public QuestionsController(IDeletableEntityRepository<Post> posts, ISanitizer sanitizer)
@@ -25,11 +24,11 @@
             this.sanitizer = sanitizer;
         }
 
-        public ActionResult Display(int id, string url, int page = 1)
+        public ActionResult Display(int id, string url = "", int page = 1)
         {
             var postViewModel = this.posts
                 .All()
-                .Include(p => p.Author)
+                .Include(p=>p.Author)
                 .Where(p => p.Id == id)
                 .Project()
                 .To<QuestionDisplayViewModel>().FirstOrDefault();
@@ -51,6 +50,7 @@
         public ActionResult Ask()
         {
             var model = new AskInputModel();
+            
             return this.View(model);
         }
 
@@ -58,7 +58,6 @@
         public ActionResult Ask(AskInputModel input)
         {
             var tags = input.Tags.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
-
             List<Tag> myTags = new List<Tag>();
             foreach (var tag in tags)
             {
@@ -77,13 +76,13 @@
                     Title = input.Title,
                     Content = this.sanitizer.Sanitize(input.Content),
                     Tags = myTags,
-                    Author = input.User
+                    Author = input.Author
+
                 };
 
                 this.posts.Add(post);
-
                 this.posts.SaveChanges();
-                return this.RedirectToAction("Display", new {id = post.Id, url = "new"});
+               // return this.RedirectToAction("Display", new {id = post.Id, url = "new"});
             }
 
             return this.View(input);
