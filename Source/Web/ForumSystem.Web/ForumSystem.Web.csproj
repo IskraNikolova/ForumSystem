@@ -510,6 +510,10 @@
       <Project>{45be66fe-064a-41b2-8db6-f956d9bb4030}</Project>
       <Name>ForumSystem.Data.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ForumSystem.Common\ForumSystem.Common.csproj">
+      <Project>{e0488ba6-9c18-4c47-9a43-a9937fc98dc2}</Project>
+      <Name>ForumSystem.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ForumSystem.Web.Infrastructure\ForumSystem.Web.Infrastructure.csproj">
       <Project>{e2b1e687-8ddc-4972-a340-cf2ac8639b42}</Project>
       <Name>ForumSystem.Web.Infrastructure</Name>
