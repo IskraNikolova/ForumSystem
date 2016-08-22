@@ -1,6 +1,7 @@
 namespace ForumSystem.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using Data.Common.Models;
 
@@ -13,6 +14,10 @@ namespace ForumSystem.Models
         public string Title { get; set; }
 
         public string Content { get; set; }
+
+        public ApplicationUser Author { get; set; }
+
+        public IList<Tag> Tags { get; set; }
 
         public bool IsDeleted { get; set; }
 

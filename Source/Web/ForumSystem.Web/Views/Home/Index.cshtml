@@ -9,21 +9,22 @@
         <div class="panel panel-success">
             <div class="panel-heading">
                 <h3>
-                    <a href ="/123/asd">@post.Title</a>
+                    <a href="/123/asd">@post.Title</a>
                 </h3>
             </div>
             <div class="panel-body">
-                <p>Some text...</p>
+                <p>@Html.Raw(post.Content)</p>
+                @*<p>@post.Author.Email</p>*@
                 <div>
-                    <span class="label label-success">kids</span>
-                    <span class="label label-success">academy</span>
-                    <span class="label label-success">bla bla</span>
+                    @foreach (var tag in @post.Tags)
+                    {
+                        <span class="label label-success">@tag.Name</span>
+                    }
                 </div>
             </div>
             <div>
                 <span class="label label-default">0 Answers</span>
-                <span class="label label-default">0 Answers</span>
             </div>
         </div>
     }
- </div>
+</div>

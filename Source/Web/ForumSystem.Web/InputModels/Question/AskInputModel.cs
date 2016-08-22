@@ -2,6 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
+    using ForumSystem.Models;
 
     public class AskInputModel
     {
@@ -18,5 +19,7 @@
         //todo crearte validator
         [Display(Name = "Tags")]
         public string Tags { get; set; }
+
+        public ApplicationUser User { get; set; }
     }
 }

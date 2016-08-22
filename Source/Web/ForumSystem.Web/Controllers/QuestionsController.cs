@@ -1,5 +1,7 @@
 ﻿namespace ForumSystem.Web.Controllers
 {
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using AutoMapper.QueryableExtensions;
@@ -51,14 +53,26 @@
         [HttpPost]
         public ActionResult Ask(AskInputModel input)
         {
+            var tags = input.Tags.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
+            List<Tag> myTags = new List<Tag>();
+            foreach (var tag in tags)
+            {
+                var myTag = new Tag
+                {
+                    Name = tag
+                };
+
+                myTags.Add(myTag);
+            }
+
             if (this.ModelState.IsValid)
             {
                 var post = new Post
                 {
                     Title = input.Title,
                     Content = this.sanitizer.Sanitize(input.Content),
-                    //TODO tags
-                    //TODO author
+                    Tags = myTags,
+                    Author = input.User
                 };
 
                 this.posts.Add(post);
