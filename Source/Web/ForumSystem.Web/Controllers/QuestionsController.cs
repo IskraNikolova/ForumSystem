@@ -2,9 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Data.Entity;
     using System.Linq;
     using System.Web.Mvc;
     using AutoMapper.QueryableExtensions;
+    using Data;
     using Data.Common.Repository;
     using ForumSystem.Models;
     using Infrastructure;
@@ -14,6 +16,7 @@
     public class QuestionsController : Controller
     {
         private readonly IDeletableEntityRepository<Post> posts;
+        private DeletableEntityRepository<Post> db = new DeletableEntityRepository<Post>(new ApplicationDbContext());
         private readonly ISanitizer sanitizer;
 
         public QuestionsController(IDeletableEntityRepository<Post> posts, ISanitizer sanitizer)
@@ -26,6 +29,7 @@
         {
             var postViewModel = this.posts
                 .All()
+                .Include(p => p.Author)
                 .Where(p => p.Id == id)
                 .Project()
                 .To<QuestionDisplayViewModel>().FirstOrDefault();

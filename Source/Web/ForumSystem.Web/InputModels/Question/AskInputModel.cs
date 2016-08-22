@@ -20,6 +20,7 @@
         [Display(Name = "Tags")]
         public string Tags { get; set; }
 
+        [Display(Name = "User")]
         public ApplicationUser User { get; set; }
     }
 }
