@@ -11,11 +11,14 @@ namespace ForumSystem.Models
         [Key]
         public int Id { get; set; }
 
+        [Required]
         [MaxLength(100)]
         public string Title { get; set; }
 
+        [Required]
         public string Content { get; set; }
 
+        [Required]
         public IList<Tag> Tags { get; set; }
 
         [Index]

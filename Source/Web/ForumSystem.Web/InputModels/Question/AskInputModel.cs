@@ -17,7 +17,7 @@
         [DataType("tinymce_full")]
         public string Content { get; set; }
 
-        //todo crearte validator
+        [Required]
         [Display(Name = "Tags")]
         public string Tags { get; set; }
 

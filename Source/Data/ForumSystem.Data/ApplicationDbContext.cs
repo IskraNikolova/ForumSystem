@@ -32,11 +32,6 @@
 
         public IDbSet<Post> Posts { get; set; }
 
-        public override Task<int> SaveChangesAsync()
-        {
-            return base.SaveChangesAsync();
-        }
-
         private void ApplyAuditInfoRules()
         {
             // Approach via @julielerman: http://bit.ly/123661P

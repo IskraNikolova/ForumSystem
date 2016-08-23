@@ -10,7 +10,6 @@
     using ForumSystem.Models;
     using Infrastructure;
     using InputModels.Question;
-    using Microsoft.Ajax.Utilities;
     using ViewModels.Questions;
 
     public class QuestionsController : Controller
@@ -68,6 +67,7 @@
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Ask()
         {
             var model = new AskInputModel();
@@ -75,31 +75,32 @@
             return this.View(model);
         }
 
-
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Ask(AskInputModel input)
         {
-            var tags1 = input.Tags.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
-
             List<Tag> tags2 = new List<Tag>();
-            foreach (var tag in tags1)
+            if (input.Tags != null)
             {
-                var myTag = this.tags.All().FirstOrDefault(t => t.Name == tag.Trim());
-                if (myTag != null)
+                var tags1 = input.Tags.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var tag in tags1)
                 {
-                    this.tags.Detach(myTag);
-                    tags2.Add(myTag);
+                    var myTag = this.tags.All().FirstOrDefault(t => t.Name == tag.Trim());
+                    if (myTag != null)
+                    {
+                        this.tags.Detach(myTag);
+                        tags2.Add(myTag);
+                    }
                 }
             }
 
             var author = this.users
                 .All()
                 .FirstOrDefault(u => u.UserName == this.User.Identity.Name);
-            this.users.Detach(author);
-            if (author == null)
+            if (author != null)
             {
-                author = input.Author;
+                this.users.Detach(author);
             }
 
             if (this.ModelState.IsValid)
