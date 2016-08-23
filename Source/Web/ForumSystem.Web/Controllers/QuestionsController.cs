@@ -85,19 +85,9 @@
             List<Tag> tags2 = new List<Tag>();
             foreach (var tag in tags1)
             {
-                var myTag = this.tags.All().FirstOrDefault(t => t.Name == tag);
-                if (myTag == null)
+                var myTag = this.tags.All().FirstOrDefault(t => t.Name == tag.Trim());
+                if (myTag != null)
                 {
-                    var newTag = new Tag
-                    {
-                        Name = tag
-                    };
-
-                    tags2.Add(newTag);
-                }
-                else
-                {
-                   
                     this.tags.Detach(myTag);
                     tags2.Add(myTag);
                 }
