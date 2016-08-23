@@ -7,6 +7,7 @@
 
     public class GenericRepository<T> : IRepository<T> where T : class
     {
+
         public GenericRepository(DbContext context)
         {
             if (context == null)
@@ -17,7 +18,7 @@
             this.Context = context;
             this.DbSet = this.Context.Set<T>();
         }
-
+       
         protected IDbSet<T> DbSet { get; set; }
 
         protected DbContext Context { get; set; }
@@ -41,6 +42,7 @@
             }
             else
             {
+                this.Update(entity);
                 this.DbSet.Add(entity);
             }
         }
@@ -80,6 +82,18 @@
             }
         }
 
+        public DbEntityEntry<T> EnsureAttachedEF(T entity)
+        {
+            var e = this.Context.Entry(entity);
+            if (e.State == EntityState.Detached)
+            {
+                this.DbSet.Attach(entity);
+                e = this.Context.Entry(entity);
+            }
+
+            return e;
+        }
+
         public virtual void Detach(T entity)
         {
             DbEntityEntry entry = this.Context.Entry(entity);
@@ -91,7 +105,7 @@
         {
             return this.Context.SaveChanges();
         }
-
+       
         public void Dispose()
         {
             this.Context.Dispose();

@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using ForumSystem.Models;
-    using Infrastructure;
     using Infrastructure.Mapping;
 
     public class IndexBlogPostViewModel : IMapFrom<Post>

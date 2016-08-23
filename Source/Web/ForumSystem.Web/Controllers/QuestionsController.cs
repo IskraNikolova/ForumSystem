@@ -6,7 +6,6 @@
     using System.Linq;
     using System.Web.Mvc;
     using AutoMapper.QueryableExtensions;
-    using Data;
     using Data.Common.Repository;
     using ForumSystem.Models;
     using Infrastructure;
@@ -18,12 +17,17 @@
     {
         private readonly IDeletableEntityRepository<Post> posts;
         private readonly IDeletableEntityRepository<ApplicationUser> users;
+        private readonly IDeletableEntityRepository<Tag> tags;
         private readonly ISanitizer sanitizer;
 
-        public QuestionsController(IDeletableEntityRepository<Post> posts, IDeletableEntityRepository<ApplicationUser> users, ISanitizer sanitizer)
+        public QuestionsController(IDeletableEntityRepository<Post> posts, 
+            IDeletableEntityRepository<ApplicationUser> users,
+            IDeletableEntityRepository<Tag> tags,
+            ISanitizer sanitizer)
         {
             this.posts = posts;
             this.users = users;
+            this.tags = tags;
             this.sanitizer = sanitizer;
         }
 
@@ -71,23 +75,42 @@
             return this.View(model);
         }
 
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Ask(AskInputModel input)
         {
-            var tags = input.Tags.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
-                       
-            List<Tag> myTags = new List<Tag>();
-            foreach (var tag in tags)
-            {
-                var myTag = new Tag
-                {
-                    Name = tag
-                };
+            var tags1 = input.Tags.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
 
-                myTags.Add(myTag);
+            List<Tag> tags2 = new List<Tag>(this.tags.All());
+            foreach (var tag in tags1)
+            {
+                var myTag = this.tags.All().FirstOrDefault(t => t.Name == tag);
+                if (myTag == null)
+                {
+                    var newTag = new Tag
+                    {
+                        Name = tag
+                    };
+
+                    tags2.Add(newTag);
+                }
+                else
+                {
+                   
+                    this.tags.Detach(myTag);
+                    tags2.Add(myTag);
+                }
             }
 
-            var author = this.users.All().Where(u => u.UserName == this.User.Identity.Name).FirstOrDefault();
+            var author = this.users
+                .All()
+                .FirstOrDefault(u => u.UserName == this.User.Identity.Name);
+            this.users.Detach(author);
+            if (author == null)
+            {
+                author = input.Author;
+            }
 
             if (this.ModelState.IsValid)
             {
@@ -95,9 +118,9 @@
                 {
                     Title = input.Title,
                     Content = this.sanitizer.Sanitize(input.Content),
-                    Tags = myTags,
+                    Tags = tags2,
                     Author = author
-                };
+            };
 
                 this.posts.Add(post);
                 this.posts.SaveChanges();

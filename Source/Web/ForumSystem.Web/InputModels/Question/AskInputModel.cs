@@ -3,13 +3,10 @@
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
     using ForumSystem.Models;
+    using Infrastructure.Mapping;
 
-    public class AskInputModel
+    public class AskInputModel: IMapFrom<Post>
     {
-        public AskInputModel()
-        {
-        }
-
         [Required]
         [Display(Name = "Title")]
         public string Title { get; set; }

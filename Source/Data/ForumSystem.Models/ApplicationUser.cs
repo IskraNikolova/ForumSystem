@@ -1,17 +1,14 @@
 ﻿namespace ForumSystem.Models
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
     using System.Threading.Tasks;
     using System.Security.Claims;
     using Data.Common.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using Web.Infrastructure.Mapping;
 
-    public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity, IMapFrom<ApplicationUser>
+    public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
     {
         public ApplicationUser()
         {

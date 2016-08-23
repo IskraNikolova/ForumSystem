@@ -14,9 +14,13 @@
             </div>
             <div class="panel-body">
                 <p>@Html.Raw(post.Content)</p>
-            
-                  <p></p>
-         
+
+
+                @if (@post.Author != null)
+                {
+                    <p>@post.Author.Email</p>
+                }
+
                 <div>
                     @foreach (var tag in @post.Tags)
                     {

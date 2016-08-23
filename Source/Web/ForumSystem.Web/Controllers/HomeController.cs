@@ -1,5 +1,6 @@
 ﻿namespace ForumSystem.Web.Controllers
 {
+    using System.Data.Entity;
     using System.Web.Mvc;
     using AutoMapper.QueryableExtensions;
     using Data.Common.Repository;
@@ -8,7 +9,7 @@
 
     public class HomeController : Controller
     {
-        private IDeletableEntityRepository<Post> posts;
+        private readonly IDeletableEntityRepository<Post> posts;
 
         public HomeController(IDeletableEntityRepository<Post> posts)
         {
@@ -17,7 +18,10 @@
 
         public ActionResult Index()
         {
-            var allPosts = this.posts.All().Project().To<IndexBlogPostViewModel>();
+            var allPosts = this.posts.All()
+                .Include(p => p.Author)
+                .Project().To<IndexBlogPostViewModel>();
+
             return this.View(allPosts);
         }
     }
