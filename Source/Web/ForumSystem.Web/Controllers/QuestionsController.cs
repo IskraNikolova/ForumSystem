@@ -82,7 +82,7 @@
         {
             var tags1 = input.Tags.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
 
-            List<Tag> tags2 = new List<Tag>(this.tags.All());
+            List<Tag> tags2 = new List<Tag>();
             foreach (var tag in tags1)
             {
                 var myTag = this.tags.All().FirstOrDefault(t => t.Name == tag);
