@@ -490,7 +490,10 @@
     <Content Include="Views\Questions\Display.cshtml" />
     <Content Include="Views\Answer\Display.cshtml" />
     <Content Include="Views\Answer\Create.cshtml" />
+    <None Include="Views\Answer\All.cshtml" />
+    <None Include="Views\Answer\AnswerDetail.cshtml" />
     <None Include="Views\Posts\Index.cshtml" />
+    <Content Include="Views\Questions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

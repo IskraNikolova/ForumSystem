@@ -58,25 +58,14 @@
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(AnswerInputModel input)
+        public ActionResult Create(int id, AnswerInputModel input)
         {
             var aswerAuthor = this.users
                 .All()
                 .FirstOrDefault(u => u.UserName == this.User.Identity.Name);
-
             if (aswerAuthor != null)
             {
                 this.users.Detach(aswerAuthor);
-            }
-
-            var post = this.posts.All()
-                .Include(p => p.Author)
-                .Include(p => p.Title)
-                .FirstOrDefault(p => p.Author.Id == aswerAuthor.Id);
-
-            if (post != null)
-            {
-                this.posts.Detach(post);
             }
 
             if (this.ModelState.IsValid)
@@ -84,9 +73,8 @@
                 var answer = new Answer
                 {
                     Content = this.sanitizer.Sanitize(input.Content),
-                    Post = post,
-                    PostId = post.Id,
-                    Author = post.Author
+                    PostId = id,
+                    Author = aswerAuthor
                 };
 
                 this.answers.Add(answer);
@@ -95,6 +83,20 @@
             }
 
             return this.View(input);
+        }
+
+        public ActionResult All(int id, int maxComments = 999, int startFrom = 0)
+        {
+            var comments = this.answers
+                .All()
+                .Where(c => c.PostId == id && !c.IsDeleted)
+                .OrderByDescending(c => c.CreatedOn)
+                .Skip(startFrom)
+                .Take(maxComments)
+                .Project()
+                .To<AnswerViewModel>();
+
+            return this.PartialView(comments);
         }
     }
 }

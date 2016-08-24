@@ -1,6 +1,6 @@
-﻿@model IEnumerable<ForumSystem.Web.ViewModels.Home.IndexBlogPostViewModel>
+﻿@model  IEnumerable<ForumSystem.Web.ViewModels.Home.IndexBlogPostViewModel>
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Index";
 }
 
 <div class="container">
@@ -9,7 +9,7 @@
         <div class="panel panel-success">
             <div class="panel-heading">
                 <h3>
-                    @Html.ActionLink(@post.Title, "", "", new { id = post.Id})
+                    @post.Title
                 </h3>
             </div>
             <div class="panel-body">
@@ -28,9 +28,10 @@
                         <span class="label label-success">@tag.Name</span>
                     }
                 </div>
+                @Html.ActionLink("Answer", "Create", "Answer", new { id = post.Id}, null)
             </div>
             <div>
-                
+
                 <span class="label label-default">@post.Answers.Count Answers</span>
             </div>
         </div>

@@ -7,10 +7,6 @@
 
     public class AnswerInputModel : IMapFrom<Answer>
     {
-        public AnswerInputModel()
-        {
-        }
-
         [Required]
         [AllowHtml]
         [Display(Name = "Content")]

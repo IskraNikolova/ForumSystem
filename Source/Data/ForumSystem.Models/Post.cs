@@ -8,6 +8,11 @@ namespace ForumSystem.Models
 
     public class Post : AuditInfo, IDeletableEntity
     {
+        public Post()
+        {
+            this.Tags = new List<Tag>();
+            this.Answers = new List<Answer>();
+        }
         [Key]
         public int Id { get; set; }
 

@@ -20,10 +20,18 @@
              defaults: new { controller = "Questions", action = "Display" });
 
             routes.MapRoute(
-                name: "Answer",
-                url: "Answer/Create",
-                defaults: new {controller = "Answer", action = "Create"});
+             name: "CreateAnswer",
+             url: "Answer/Create/{id}",
+             defaults: new { controller = "Answer", action = "Create", id = UrlParameter.Optional }
+         );
 
+
+            routes.MapRoute(
+                name: "AnswerDetails",
+                url: "Answer/AnswerDetail",
+                defaults: new { controller = "Answer", action = "Display" });
+
+            //Answer/AnswerDetail
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

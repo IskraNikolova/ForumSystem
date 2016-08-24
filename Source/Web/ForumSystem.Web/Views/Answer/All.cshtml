@@ -1,0 +1,21 @@
+﻿@model System.Linq.IQueryable<ForumSystem.Web.ViewModels.Answers.AnswerViewModel>
+
+@using ForumSystem.Web.ViewModels.Answers;
+
+<h3>Answers</h3>
+
+@foreach (var answer in Model)
+{
+    @Html.Partial("AnswerDetail", answer)
+}
+
+@*<script>
+    function hideViewAnswersButton() {
+        $('#show-answers-btn').hide();
+        $('#new-answer').removeClass('hidden');
+    }
+
+    function showAnswerRequiredError(data) {
+        $('<h3 style="color:red">' + data.responseJSON.errorMessage + '</h3>').prependTo('#new-answer').delay(3000).fadeOut();
+    }
+</script>*@

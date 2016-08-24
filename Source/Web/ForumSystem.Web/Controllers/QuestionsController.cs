@@ -11,6 +11,7 @@
     using ForumSystem.Models;
     using Infrastructure;
     using InputModels.Question;
+    using ViewModels.Home;
     using ViewModels.Questions;
 
     public class QuestionsController : Controller
@@ -29,6 +30,14 @@
             this.users = users;
             this.tags = tags;
             this.sanitizer = sanitizer;
+        }
+        public ActionResult Index()
+        {
+            var allPosts = this.posts.All()
+                .Include(p => p.Author)
+                .Project().To<IndexBlogPostViewModel>();
+
+            return this.View(allPosts);
         }
 
         public ActionResult Display(int id, string url = "", int page = 1)
