@@ -1,0 +1,32 @@
+﻿@model System.Linq.IQueryable<ForumSystem.Web.ViewModels.Answers.AnswerViewModel>
+
+@using ForumSystem.Web.ViewModels.Answers;
+
+@foreach (var answer in Model)
+{
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3>
+                @answer.Post.Title
+            </h3>
+        </div>
+        <div class="panel-body">
+            <div class="panel-body">
+                <p>@Html.Raw(answer.Content)</p>
+                @if (@answer.Author != null)
+                {
+                    <p>@answer.Author.Email</p>
+                }
+                else
+                {
+                    @Html.Display("Anonymous")
+                }
+            </div>
+            <span class="label label-success">
+                @Html.ActionLink("Delete", "Delete", "Answer", new { id = answer.Id }, null)
+            </span>
+        </div>
+    </div>
+}
+
+

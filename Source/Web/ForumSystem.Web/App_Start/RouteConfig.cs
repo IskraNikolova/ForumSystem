@@ -19,17 +19,22 @@
              url: "questions/{id}/{url}",
              defaults: new { controller = "Questions", action = "Display" });
 
+
             routes.MapRoute(
              name: "CreateAnswer",
              url: "Answer/Create/{id}",
              defaults: new { controller = "Answer", action = "Create", id = UrlParameter.Optional }
          );
+            routes.MapRoute(
+                name: "ViewAnswer",
+                url: "Answer/ViewAnswer/{id}",
+                defaults: new { controller = "Answer", action = "ViewAll", id = UrlParameter.Optional });
 
 
             routes.MapRoute(
-                name: "AnswerDetails",
-                url: "Answer/AnswerDetail",
-                defaults: new { controller = "Answer", action = "Display" });
+                name: "DeleteAnswer",
+                url: "Answer/ViewAnswer/Delete/{id}",
+                defaults: new { controller = "Answer", action = "Delete", id = UrlParameter.Optional });
 
             //Answer/AnswerDetail
             routes.MapRoute(

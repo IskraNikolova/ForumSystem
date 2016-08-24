@@ -2,6 +2,7 @@
 {
     using System.Data.Entity;
     using System.Linq;
+    using System.Net;
     using System.Web.Mvc;
     using AutoMapper.QueryableExtensions;
     using Data.Common.Repository;
@@ -36,14 +37,25 @@
                           .Include(p => p.Author)
                           .Where(a => a.Id == id)
                           .Project()
-                          .To<AnswerViewModel>().FirstOrDefault();
+                          .To<AnswerViewModel>()
+                          .FirstOrDefault();
 
             if (answerViewModel == null)
             {
-                return this.HttpNotFound("Not found post.");
+                return this.HttpNotFound("Not found answer.");
             }
 
             return this.View(answerViewModel);
+        }
+
+        public ActionResult ViewAll(int id)
+        {
+            var viewAnswers = this.answers.All()
+                .Where(a => a.PostId == id)
+                .Project()
+                .To<AnswerViewModel>();
+
+            return this.View(viewAnswers);
         }
 
         [HttpGet]
@@ -85,18 +97,30 @@
             return this.View(input);
         }
 
-        public ActionResult All(int id, int maxComments = 999, int startFrom = 0)
+        public ActionResult Delete(int? id)
         {
-            var comments = this.answers
-                .All()
-                .Where(c => c.PostId == id && !c.IsDeleted)
-                .OrderByDescending(c => c.CreatedOn)
-                .Skip(startFrom)
-                .Take(maxComments)
-                .Project()
-                .To<AnswerViewModel>();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
-            return this.PartialView(comments);
+            Answer answer = this.answers.All().FirstOrDefault(a => a.Id == id);
+            if (answer == null)
+            {
+                return this.HttpNotFound();
+            }
+
+            return this.View(answer);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Answer answer = this.answers.All().FirstOrDefault(a => a.Id == id);
+            this.answers.Delete(answer);
+            this.answers.SaveChanges();
+            return this.RedirectToAction("ViewAll");
         }
     }
 }

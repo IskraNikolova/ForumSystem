@@ -16,7 +16,7 @@
                 <p>@Html.Raw(post.Content)</p>
                 @if (@post.Author != null)
                 {
-                    <p>@post.Author.Email</p>
+                    <p>by @post.Author.Email</p>
                 }
                 else
                 {
@@ -28,10 +28,14 @@
                         <span class="label label-success">@tag.Name</span>
                     }
                 </div>
-                @Html.ActionLink("Answer", "Create", "Answer", new { id = post.Id}, null)
+                <span class="label label-success">
+                    @Html.ActionLink("Answer", "Create", "Answer", new { id = post.Id }, null)
+                </span>
+                <span class="label label-success">
+                    @Html.ActionLink("View Answers", "ViewAll", "Answer", new {id = post.Id}, null)
+                </span>
             </div>
             <div>
-
                 <span class="label label-default">@post.Answers.Count Answers</span>
             </div>
         </div>
