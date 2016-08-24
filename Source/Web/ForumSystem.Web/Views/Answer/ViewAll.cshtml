@@ -22,9 +22,9 @@
                     @Html.Display("Anonymous")
                 }
             </div>
-            <span class="label label-success">
+            <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Tooltip on left">
                 @Html.ActionLink("Delete", "Delete", "Answer", new { id = answer.Id }, null)
-            </span>
+            </button>
         </div>
     </div>
 }

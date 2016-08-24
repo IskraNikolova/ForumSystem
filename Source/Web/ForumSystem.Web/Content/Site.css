@@ -1,12 +1,15 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    background-image: url(askme.jpg);
+    background-size: 80% 400%;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 

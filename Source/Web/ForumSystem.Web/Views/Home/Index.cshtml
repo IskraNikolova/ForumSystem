@@ -3,36 +3,9 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="container">
-    @foreach (var post in Model)
-    {
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <h3>
-                    @Html.ActionLink(@post.Title, "", "", new { id = post.Id})
-                </h3>
-            </div>
-            <div class="panel-body">
-                <p>@Html.Raw(post.Content)</p>
-                @if (@post.Author != null)
-                {
-                    <p>@post.Author.Email</p>
-                }
-                else
-                {
-                    @Html.Display("Anonymous")
-                }
-                <div>
-                    @foreach (var tag in @post.Tags)
-                    {
-                        <span class="label label-success">@tag.Name</span>
-                    }
-                </div>
-            </div>
-            <div>
-                
-                <span class="label label-default">@post.Answers.Count Answers</span>
-            </div>
-        </div>
-    }
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-3">Hello, User!</h1>
+        <p class="lead">Еach question has its own answer.</p>
+    </div>
 </div>

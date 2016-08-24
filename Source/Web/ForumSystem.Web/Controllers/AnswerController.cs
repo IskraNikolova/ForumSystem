@@ -91,7 +91,7 @@
 
                 this.answers.Add(answer);
                 this.answers.SaveChanges();
-                return this.RedirectToAction("Display", new { id = answer.Id, url = "new" });
+                return this.RedirectToAction("ViewAll");
             }
 
             return this.View(input);
