@@ -6,7 +6,7 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using Data.Common.Models;
 
-    public class Tag : IAuditInfo, IDeletableEntity
+    public class Tag : AuditInfo, IDeletableEntity
     {
         [Key]
         public int Id { get; set; }
@@ -16,12 +16,6 @@
         public string Name { get; set; }
 
         public List<Post> Posts { get; set; }
-
-        public DateTime CreatedOn { get; set; }
-
-        public bool PreserveCreatedOn { get; set; }
-
-        public DateTime? ModifiedOn { get; set; }
 
         [Index]
         public bool IsDeleted { get; set; }

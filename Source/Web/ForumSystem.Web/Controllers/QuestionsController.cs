@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq;
+    using System.Net;
     using System.Web.Mvc;
     using AutoMapper.QueryableExtensions;
     using Data.Common.Repository;
@@ -19,7 +20,7 @@
         private readonly IDeletableEntityRepository<Tag> tags;
         private readonly ISanitizer sanitizer;
 
-        public QuestionsController(IDeletableEntityRepository<Post> posts, 
+        public QuestionsController(IDeletableEntityRepository<Post> posts,
             IDeletableEntityRepository<ApplicationUser> users,
             IDeletableEntityRepository<Tag> tags,
             ISanitizer sanitizer)
@@ -33,11 +34,11 @@
         public ActionResult Display(int id, string url = "", int page = 1)
         {
             var postViewModel = this.posts
-                .All()
-                .Include(p => p.Author)
-                .Where(p => p.Id == id)
-                .Project()
-                .To<QuestionDisplayViewModel>().FirstOrDefault();
+                                    .All()
+                                    .Include(p => p.Author)
+                                    .Where(p => p.Id == id)
+                                    .Project()
+                                    .To<QuestionDisplayViewModel>().FirstOrDefault();
 
             if (postViewModel == null)
             {
@@ -62,7 +63,7 @@
             ////        postsWithSameTag.Add(post);
             ////    }
             ////}
-            
+
             return this.Content(string.Join("\n", postsWithSameTag));
         }
 
@@ -71,7 +72,7 @@
         public ActionResult Ask()
         {
             var model = new AskInputModel();
-            
+
             return this.View(model);
         }
 
@@ -83,7 +84,7 @@
             List<Tag> tags2 = new List<Tag>();
             if (input.Tags != null)
             {
-                var tags1 = input.Tags.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                var tags1 = input.Tags.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var tag in tags1)
                 {
                     var myTag = this.tags.All().FirstOrDefault(t => t.Name == tag.Trim());
@@ -96,8 +97,8 @@
             }
 
             var author = this.users
-                .All()
-                .FirstOrDefault(u => u.UserName == this.User.Identity.Name);
+                             .All()
+                             .FirstOrDefault(u => u.UserName == this.User.Identity.Name);
             if (author != null)
             {
                 this.users.Detach(author);
@@ -111,7 +112,7 @@
                     Content = this.sanitizer.Sanitize(input.Content),
                     Tags = tags2,
                     Author = author
-            };
+                };
 
                 this.posts.Add(post);
                 this.posts.SaveChanges();

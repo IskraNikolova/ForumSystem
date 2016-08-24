@@ -3,7 +3,6 @@
     using System;
     using System.Data.Entity;
     using System.Linq;
-    using System.Threading.Tasks;
     using Common.Models;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Migrations;
@@ -31,6 +30,8 @@
         public IDbSet<Tag> Tags { get; set; }
 
         public IDbSet<Post> Posts { get; set; }
+
+        public IDbSet<Answer> Answers { get; set; }
 
         private void ApplyAuditInfoRules()
         {

@@ -28,9 +28,11 @@
                         <span class="label label-success">@tag.Name</span>
                     }
                 </div>
+                @Html.ActionLink("Comments", "Create", "Answer")
             </div>
             <div>
-                <span class="label label-default">0 Answers</span>
+                
+                <span class="label label-default">@post.Answers.Count Answers</span>
             </div>
         </div>
     }

@@ -18,7 +18,7 @@
         // GET: Posts
         public ActionResult Index()
         {
-            return View(this.posts.All().Include(p => p.Author).ToList());
+            return this.View(this.posts.All().Include(p => p.Author).ToList());
         }
     }
 }

@@ -21,6 +21,8 @@ namespace ForumSystem.Models
         [Required]
         public IList<Tag> Tags { get; set; }
 
+        public IList<Answer> Answers { get; set; }
+
         [Index]
         public ApplicationUser Author { get; set; }
 

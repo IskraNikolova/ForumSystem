@@ -69,6 +69,9 @@ namespace ForumSystem.Web
             kernel.Bind<DbContext>().To<ApplicationDbContext>();
 
             kernel.Bind(typeof(IRepository<Post>)).To(typeof(DeletableEntityRepository<Post>));
+            kernel.Bind(typeof(IRepository<Tag>)).To(typeof(DeletableEntityRepository<Tag>));
+            kernel.Bind(typeof(IRepository<ApplicationUser>)).To(typeof(DeletableEntityRepository<ApplicationUser>));
+
 
             kernel.Bind(typeof(IDeletableEntityRepository<>)).To(typeof(DeletableEntityRepository<>));
 

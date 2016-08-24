@@ -14,6 +14,8 @@
 
         public IList<Tag> Tags { get; set; }
 
+        public IList<Answer> Answers { get; set; }
+
         public ApplicationUser Author { get; set; }
     }
 }
