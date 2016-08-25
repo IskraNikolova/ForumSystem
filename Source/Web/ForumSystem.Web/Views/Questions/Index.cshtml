@@ -9,7 +9,7 @@
         <div class="panel panel-success">
             <div class="panel-heading">
                 <h3>
-                    @post.Title
+                    @Html.ActionLink(post.Title, "ViewAll", "Answer", new { id = post.Id }, null)
                 </h3>
             </div>
             <div class="panel-body">
@@ -29,7 +29,7 @@
                     }
                 </div>
                 <span class="label label-success">
-                    @Html.ActionLink("Answer", "Create", "Answer", new { id = post.Id }, null)
+                    @Html.ActionLink("Comment", "Create", "Answer", new { id = post.Id }, null)
                 </span>
                 <span class="label label-success">
                     @Html.ActionLink("View Answers", "ViewAll", "Answer", new {id = post.Id}, null)
