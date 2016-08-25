@@ -1,5 +1,6 @@
 ﻿namespace ForumSystem.Web.Controllers
 {
+    using System.ComponentModel.DataAnnotations;
     using System.Data.Entity;
     using System.Linq;
     using System.Net;
@@ -48,6 +49,41 @@
             return this.View(answerViewModel);
         }
 
+        public ActionResult Rate(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Answer answer = this.answers
+                .All()
+                .FirstOrDefault(a => a.Id == id);
+
+            if (answer == null)
+            {
+                return this.HttpNotFound();
+            }
+
+            return this.View(answer);
+        }
+
+        [HttpPost, ActionName("Rate")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RateConfirmed(int id)
+        {
+            Answer answer = this.answers
+                .All()
+                .FirstOrDefault(a => a.Id == id);
+            if (answer != null)
+            {
+                answer.Rating++;
+            }
+
+            this.answers.SaveChanges();
+            return this.RedirectToAction("ViewAll", new {id = answer.PostId});
+        }
+
         public ActionResult ViewAll(int id)
         {
             var viewAnswers = this.answers.All()
@@ -75,6 +111,7 @@
             var aswerAuthor = this.users
                 .All()
                 .FirstOrDefault(u => u.UserName == this.User.Identity.Name);
+
             if (aswerAuthor != null)
             {
                 this.users.Detach(aswerAuthor);
@@ -117,10 +154,13 @@
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Answer answer = this.answers.All().FirstOrDefault(a => a.Id == id);
+            Answer answer = this.answers
+                .All()
+                .FirstOrDefault(a => a.Id == id);
+
             this.answers.Delete(answer);
             this.answers.SaveChanges();
-            return this.RedirectToAction("ViewAll");
+            return this.RedirectToAction("ViewAll", new {id = answer.PostId});
         }
     }
 }

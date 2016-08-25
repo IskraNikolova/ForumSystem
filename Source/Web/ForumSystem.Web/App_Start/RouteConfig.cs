@@ -8,7 +8,6 @@
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
             routes.MapRoute(
           name: "Delete question",
           url: "Questions/Delete/{id}",
@@ -26,6 +25,12 @@
                 url: "Answer/Create/{id}",
                 defaults: new { controller = "Answer", action = "Create", id = UrlParameter.Optional }
                 );
+
+            routes.MapRoute(
+             name: "AnswerRate",
+             url: "Answer/Rate/{id}",
+             defaults: new { controller = "Answer", action = "Rate", id = UrlParameter.Optional }
+             );
 
             routes.MapRoute(
                 name: "ViewAnswer",

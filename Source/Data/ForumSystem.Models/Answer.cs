@@ -14,6 +14,8 @@
 
         public int PostId { get; set; }
 
+        public int Rating { get; set; }
+
         public Post Post { get; set; }
 
         public ApplicationUser Author { get; set; }

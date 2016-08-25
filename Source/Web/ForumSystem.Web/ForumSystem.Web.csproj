@@ -492,6 +492,7 @@
     <Content Include="Views\Answer\Display.cshtml" />
     <Content Include="Views\Answer\Create.cshtml" />
     <None Include="Views\Answer\Delete.cshtml" />
+    <None Include="Views\Answer\Rate.cshtml" />
     <None Include="Views\Answer\ViewAll.cshtml" />
     <None Include="Views\Answer\AnswerDetail.cshtml" />
     <None Include="Views\Posts\Index.cshtml" />
