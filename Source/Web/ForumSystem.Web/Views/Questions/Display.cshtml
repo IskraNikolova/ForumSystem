@@ -2,6 +2,11 @@
 @{
     ViewBag.Title = Model.Title;
 }
-
-<h1>@ViewBag.Title</h1>
-@Html.Raw(Model.Content)
+<div class="container">
+    <div class="panel panel-success">
+        <h1>@ViewBag.Title</h1>
+        <div class="panel-body">
+            @Html.Raw(Model.Content)
+        </div>
+    </div>
+ </div>

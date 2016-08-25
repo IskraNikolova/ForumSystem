@@ -25,3 +25,7 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.container {
+    opacity: 0.97;
+}
