@@ -43,11 +43,11 @@
         public ActionResult Display(int id, string url = "", int page = 1)
         {
             var postViewModel = this.posts
-                                    .All()
-                                    .Include(p => p.Author)
-                                    .Where(p => p.Id == id)
-                                    .Project()
-                                    .To<QuestionDisplayViewModel>().FirstOrDefault();
+                .All()
+                .Include(p => p.Author)
+                .Where(p => p.Id == id)
+                .Project()
+                .To<QuestionDisplayViewModel>().FirstOrDefault();
 
             if (postViewModel == null)
             {
@@ -106,8 +106,9 @@
             }
 
             var author = this.users
-                             .All()
-                             .FirstOrDefault(u => u.UserName == this.User.Identity.Name);
+                .All()
+                .FirstOrDefault(u => u.UserName == this.User.Identity.Name);
+
             if (author != null)
             {
                 this.users.Detach(author);
@@ -139,7 +140,10 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Post post = this.posts.All().FirstOrDefault(p => p.Id == id);
+            Post post = this.posts
+                .All()
+                .FirstOrDefault(p => p.Id == id);
+
             if (post == null)
             {
                 return this.HttpNotFound();
@@ -152,10 +156,13 @@
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
-            Post post = this.posts.All().FirstOrDefault(a => a.Id == id);
-            this.posts.Delete(post);
-            this.posts.SaveChanges();
-            return this.RedirectToAction("Index");
+            Post post = this.posts
+                .All()
+                .FirstOrDefault(p => p.Id == id);
+
+                this.posts.Delete(post);
+                this.posts.SaveChanges();
+                return this.RedirectToAction("Index");
         }
 
     }
