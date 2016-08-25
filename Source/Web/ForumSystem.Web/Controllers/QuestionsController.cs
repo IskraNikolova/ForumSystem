@@ -164,6 +164,5 @@
                 this.posts.SaveChanges();
                 return this.RedirectToAction("Index");
         }
-
     }
 }
