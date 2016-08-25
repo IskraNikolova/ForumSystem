@@ -90,19 +90,12 @@
         [ValidateAntiForgeryToken]
         public ActionResult Ask(AskInputModel input)
         {
-            List<Tag> tags2 = new List<Tag>();
-            if (input.Tags != null)
+            var tag = this.tags.All()
+                .FirstOrDefault(t => t.Name == input.Tag);
+
+            if (tag != null)
             {
-                var tags1 = input.Tags.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
-                foreach (var tag in tags1)
-                {
-                    var myTag = this.tags.All().FirstOrDefault(t => t.Name == tag.Trim());
-                    if (myTag != null)
-                    {
-                        this.tags.Detach(myTag);
-                        tags2.Add(myTag);
-                    }
-                }
+                this.tags.Detach(tag);
             }
 
             var author = this.users
@@ -120,7 +113,7 @@
                 {
                     Title = input.Title,
                     Content = this.sanitizer.Sanitize(input.Content),
-                    Tags = tags2,
+                    Tag = tag,
                     Author = author
                 };
 
@@ -163,6 +156,43 @@
                 this.posts.Delete(post);
                 this.posts.SaveChanges();
                 return this.RedirectToAction("Index");
+        }
+
+        
+        public ActionResult Music()
+        {
+            var allPosts = this.posts.All()
+                .Where(p => p.Tag.Name == "music")
+                .Project().To<IndexBlogPostViewModel>();
+
+            return this.View(allPosts);
+        }
+
+        public ActionResult Sport()
+        {
+            var allPosts = this.posts.All()
+             .Where(p => p.Tag.Name == "sport")
+             .Project().To<IndexBlogPostViewModel>();
+
+            return this.View(allPosts);
+        }
+
+        public ActionResult Fun()
+        {
+            var allPosts = this.posts.All()
+               .Where(p => p.Tag.Name == "fun")
+               .Project().To<IndexBlogPostViewModel>();
+
+            return this.View(allPosts);
+        }
+
+        public ActionResult Programming()
+        {
+            var allPosts = this.posts.All()
+            .Where(p => p.Tag.Name == "programming")
+            .Project().To<IndexBlogPostViewModel>();
+
+            return this.View(allPosts);
         }
     }
 }

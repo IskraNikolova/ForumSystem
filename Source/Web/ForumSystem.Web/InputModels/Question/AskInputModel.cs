@@ -18,8 +18,8 @@
         public string Content { get; set; }
 
         [Required]
-        [Display(Name = "Tags")]
-        public string Tags { get; set; }
+        [Display(Name = "Tag")]
+        public string Tag { get; set; }
 
         [Display(Name = "Author")]
         public ApplicationUser Author { get; set; }

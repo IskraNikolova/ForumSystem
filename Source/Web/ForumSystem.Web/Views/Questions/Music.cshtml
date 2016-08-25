@@ -22,14 +22,11 @@
                 {
                     @Html.Display("Anonymous")
                 }
-                <div>
-                    <span class="label label-success">@post.Tag</span>
-                </div>
                 <span class="label label-success">
                     @Html.ActionLink("Comment", "Create", "Answer", new { id = post.Id }, null)
                 </span>
                 <span class="label label-success">
-                    @Html.ActionLink("Delete", "Delete", "Questions", new {id = post.Id}, null)
+                    @Html.ActionLink("Delete", "Delete", "Questions", new { id = post.Id }, null)
                 </span>
             </div>
             <div>

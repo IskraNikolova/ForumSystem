@@ -10,7 +10,6 @@ namespace ForumSystem.Models
     {
         public Post()
         {
-            this.Tags = new List<Tag>();
             this.Answers = new List<Answer>();
         }
         [Key]
@@ -24,7 +23,7 @@ namespace ForumSystem.Models
         public string Content { get; set; }
 
         [Required]
-        public IList<Tag> Tags { get; set; }
+        public Tag Tag { get; set; }
 
         public IList<Answer> Answers { get; set; }
 

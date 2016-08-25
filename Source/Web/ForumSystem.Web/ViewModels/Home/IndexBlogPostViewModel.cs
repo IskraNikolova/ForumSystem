@@ -12,7 +12,7 @@
 
         public string Content { get; set; }
 
-        public IList<Tag> Tags { get; set; }
+        public Tag Tag { get; set; }
 
         public IList<Answer> Answers { get; set; }
 

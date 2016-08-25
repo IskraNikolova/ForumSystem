@@ -10,7 +10,7 @@
 
         public string Content { get; set; }
 
-        public List<Tag> Tags { get; set; }
+        public Tag Tag { get; set; }
 
         public ApplicationUser Author { get; set; }
     }

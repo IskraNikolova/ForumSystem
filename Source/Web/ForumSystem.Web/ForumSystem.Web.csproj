@@ -497,6 +497,10 @@
     <None Include="Views\Posts\Index.cshtml" />
     <Content Include="Views\Questions\Index.cshtml" />
     <None Include="Views\Questions\Delete.cshtml" />
+    <None Include="Views\Questions\Fun.cshtml" />
+    <None Include="Views\Questions\Music.cshtml" />
+    <None Include="Views\Questions\Programming.cshtml" />
+    <None Include="Views\Questions\Sport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
