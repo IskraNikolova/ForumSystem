@@ -130,5 +130,33 @@
 
             return this.View(input);
         }
+
+        [HttpGet]
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Post post = this.posts.All().FirstOrDefault(p => p.Id == id);
+            if (post == null)
+            {
+                return this.HttpNotFound();
+            }
+
+            return this.View(post);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            Post post = this.posts.All().FirstOrDefault(a => a.Id == id);
+            this.posts.Delete(post);
+            this.posts.SaveChanges();
+            return this.RedirectToAction("Index");
+        }
+
     }
 }
