@@ -6,11 +6,15 @@
 
     public class QuestionDisplayViewModel : IMapFrom<Post>
     {
+        public int Id { get; set; }
+
         public string Title { get; set; }
 
         public string Content { get; set; }
 
         public Tag Tag { get; set; }
+
+        public IList<Answer> Answers { get; set; }
 
         public ApplicationUser Author { get; set; }
     }

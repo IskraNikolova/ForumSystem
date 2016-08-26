@@ -75,6 +75,16 @@
 
             return this.Content(string.Join("\n", postsWithSameTag));
         }
+        public ActionResult ViewReadMore(int id)
+        {
+            var viewQuestion = this.posts.All()
+                .Where(p => p.Id == id)
+                .Project()
+                .To<QuestionDisplayViewModel>()
+                .FirstOrDefault();
+
+            return this.View(viewQuestion);
+        }
 
         [HttpGet]
         [Authorize]

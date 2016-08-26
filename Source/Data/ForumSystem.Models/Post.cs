@@ -10,7 +10,7 @@ namespace ForumSystem.Models
     {
         public Post()
         {
-            //this.Answers = new List<Answer>();
+            this.Answers = new List<Answer>();
         }
 
         [Key]
