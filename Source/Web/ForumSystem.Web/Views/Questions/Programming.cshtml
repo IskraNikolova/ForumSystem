@@ -4,6 +4,9 @@
 }
 
 <div class="container">
+    <div class="panel panel-success text-center">
+        @Html.ActionLink("ASK NEW QUESTION", "Ask", "Questions")
+    </div>
     @foreach (var post in Model)
     {
         <div class="panel panel-success">
@@ -11,8 +14,9 @@
                 @post.Title
             </h3>
             @if (@post.Author != null)
-                {
-                <p><i>by @post.Author.Email</i></p>
+            {
+                <p><i>by @post.Author.Email</i>
+                </p>
             }
             else
             {
@@ -22,19 +26,19 @@
             <div class="panel-body">
                 <p>
                     @Html.Raw(ForumSystem.Logic.ТextТransformer.CutText(post.Content))
-                    <i>@Html.ActionLink("read more...", "ViewAll", "Answer", new { id = post.Id }, null)</i>
+                    <i>@Html.ActionLink("read more...", "ViewAll", "Answer", new {id = post.Id}, null)</i>
                 </p>
                 <span class="label label-success">
-                    @Html.ActionLink("Add Comment", "Create", "Answer", new { id = post.Id }, null)
+                    @Html.ActionLink("Add Comment", "Create", "Answer", new {id = post.Id}, null)
                 </span>
-                <br />
+                <br/>
                 <span class="label label-warning">
-                    @Html.ActionLink("Delete", "Delete", "Questions", new { id = post.Id }, null)
+                    @Html.ActionLink("Delete", "Delete", "Questions", new {id = post.Id}, null)
                 </span>
             </div>
         </div>
-            <div>
-                <span class="label label-default">@post.Answers.Count(a => a.IsDeleted == false) Answers</span>
-            </div>
+        <div>
+            <span class="label label-default">@post.Answers.Count(a => a.IsDeleted == false) Answers</span>
+        </div>
     }
 </div>

@@ -3,7 +3,11 @@
     ViewBag.Title = "Index";
 }
 
-<div class="container">
+<div class="container-fluid">
+    <div class="panel panel-success text-center">
+        @Html.ActionLink("ASK NEW QUESTION", "Ask", "Questions")
+    </div>
+
     @foreach (var post in Model)
     {
         <div class="panel panel-success">
@@ -12,32 +16,33 @@
             </h3>
             @if (@post.Author != null)
             {
-                <p><i>by @post.Author.Email</i>
+                <p>
+                    <i>by @post.Author.Email</i>
                 </p>
             }
             else
             {
                 @Html.Display("Anonymous")
             }
-            <hr/>
+            <hr />
             <div class="panel-body">
                 <p>
                     @Html.Raw(ForumSystem.Logic.ТextТransformer.CutText(post.Content))
-                    <i>@Html.ActionLink("read more...", "ViewAll", "Answer", new {id = post.Id}, null)</i>
+                    <i>@Html.ActionLink("read more...", "ViewAll", "Answer", new { id = post.Id }, null)</i>
                 </p>
                 <div>
                     <span class="label label-success">@post.Tag.Name</span>
                 </div>
                 <span class="label label-success">
-                    @Html.ActionLink("Add Comment", "Create", "Answer", new {id = post.Id}, null)
+                    @Html.ActionLink("Add Comment", "Create", "Answer", new { id = post.Id }, null)
                 </span>
                 <span class="label label-warning">
-                    @Html.ActionLink("Delete", "Delete", "Questions", new {id = post.Id}, null)
+                    @Html.ActionLink("Delete", "Delete", "Questions", new { id = post.Id }, null)
                 </span>
             </div>
         </div>
-            <div>
-                <span class="label label-default">@post.Answers.Count Answers</span>
-            </div>
+        <div>
+            <span class="label label-default">@post.Answers.Count Answers</span>
+        </div>
     }
 </div>
