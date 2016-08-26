@@ -3,32 +3,42 @@
 @using ForumSystem.Web.ViewModels.Answers;
 
 <div class="panel panel-success">
-    <div class="panel-heading">
-        <h3>
-            @Html.ActionLink(Model.FirstOrDefault().Post.Title, "Display", "Questions", new { id = Model.FirstOrDefault().PostId, url = "new" }, null)
+    <div>
+        <h3>           
+            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+            @Model.FirstOrDefault().Post.Title
         </h3>
     </div>
     <div class="panel-body">
-            @foreach (var answer in Model)
-            {
-                <div class="panel-body">
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                    <p>@Html.Raw(answer.Content)</p>
-                    @if (@answer.Author != null)
-                    {
-                        <p>@answer.Author.Email</p>
-                    }
-                    else
-                    {
-                        @Html.Display("Anonymous")
-                    }
-                </div>
+        <p>@Html.Raw(Model.FirstOrDefault().Post.Content)</p>
+        <span class="label label-success">
+            @Html.ActionLink("Add comment", "Create", "Answer", new {id = Model.FirstOrDefault().PostId}, null)
+        </span>
+        <hr/>
+        @foreach (var answer in Model)
+        {
+            <div class="panel-body">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true">
+                        @if (@answer.Author != null)
+                        {
+                            @answer.Author.Email
+                        }
+                        else
+                        {
+                            @Html.Display("Anonymous")
+                        }
+                    </span>
+                @Html.Raw(answer.Content)
+            </div>
+            <div>
                 <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Tooltip on left">
-                    @Html.ActionLink("Delete", "Delete", "Answer", new {id = answer.Id}, null)
+                    @Html.ActionLink("Delete", "Delete", "Answer", new { id = answer.Id }, null)
                 </button>
-                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                 @answer.Rating
                 @Html.ActionLink(" Rate", "Rate", "Answer", new { id = answer.Id }, null)
-            }
-        </div>
+                <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span>
+            </div>
+            <hr />
+        }
     </div>
+</div>

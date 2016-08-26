@@ -7,31 +7,33 @@
     @foreach (var post in Model)
     {
         <div class="panel panel-success">
-            <div class="panel-heading">
-                <h3>
-                    @Html.ActionLink(post.Title, "ViewAll", "Answer", new { id = post.Id }, null)
-                </h3>
-            </div>
+            <h3>
+                @post.Title
+            </h3>
+            @if (@post.Author != null)
+                {
+                <p><i>by @post.Author.Email</i></p>
+            }
+            else
+            {
+                @Html.Display("Anonymous")
+            }
+            <hr />
             <div class="panel-body">
-                <p>@Html.Raw(post.Content)</p>
-                @if (@post.Author != null)
-                {
-                    <p>by @post.Author.Email</p>
-                }
-                else
-                {
-                    @Html.Display("Anonymous")
-                }
+                <p>
+                    @Html.Raw(ForumSystem.Logic.ТextТransformer.CutText(post.Content))
+                    <i>@Html.ActionLink("read more...", "ViewAll", "Answer", new { id = post.Id }, null)</i>
+                </p>
                 <span class="label label-success">
-                    @Html.ActionLink("Comment", "Create", "Answer", new { id = post.Id }, null)
+                    @Html.ActionLink("Add Comment", "Create", "Answer", new { id = post.Id }, null)
                 </span>
-                <span class="label label-success">
+                <span class="label label-warning">
                     @Html.ActionLink("Delete", "Delete", "Questions", new { id = post.Id }, null)
                 </span>
             </div>
+        </div>
             <div>
                 <span class="label label-default">@post.Answers.Count Answers</span>
             </div>
-        </div>
     }
 </div>

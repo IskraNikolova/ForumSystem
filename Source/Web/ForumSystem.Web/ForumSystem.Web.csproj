@@ -195,7 +195,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnswerController.cs" />
-    <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="InputModels\Answers\AnswerInputModel.cs" />
     <Compile Include="InputModels\Question\AskInputModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -494,7 +493,6 @@
     <None Include="Views\Answer\Delete.cshtml" />
     <None Include="Views\Answer\Rate.cshtml" />
     <None Include="Views\Answer\ViewAll.cshtml" />
-    <None Include="Views\Posts\Index.cshtml" />
     <Content Include="Views\Questions\Index.cshtml" />
     <None Include="Views\Questions\Delete.cshtml" />
     <None Include="Views\Questions\Fun.cshtml" />
@@ -530,6 +528,10 @@
     <ProjectReference Include="..\..\ForumSystem.Common\ForumSystem.Common.csproj">
       <Project>{e0488ba6-9c18-4c47-9a43-a9937fc98dc2}</Project>
       <Name>ForumSystem.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ForumSystem.Logic\ForumSystem.Logic.csproj">
+      <Project>{08a257f2-1d6c-4ddc-8f99-7d7e2fdd8f6e}</Project>
+      <Name>ForumSystem.Logic</Name>
     </ProjectReference>
     <ProjectReference Include="..\ForumSystem.Web.Infrastructure\ForumSystem.Web.Infrastructure.csproj">
       <Project>{e2b1e687-8ddc-4972-a340-cf2ac8639b42}</Project>

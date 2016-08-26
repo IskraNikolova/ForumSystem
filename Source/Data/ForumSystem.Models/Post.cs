@@ -10,8 +10,9 @@ namespace ForumSystem.Models
     {
         public Post()
         {
-            this.Answers = new List<Answer>();
+            //this.Answers = new List<Answer>();
         }
+
         [Key]
         public int Id { get; set; }
 
@@ -22,7 +23,7 @@ namespace ForumSystem.Models
         [Required]
         public string Content { get; set; }
 
-        [Required]
+
         public Tag Tag { get; set; }
 
         public IList<Answer> Answers { get; set; }
