@@ -1,6 +1,7 @@
 ﻿namespace ForumSystem.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Threading.Tasks;
     using System.Security.Claims;
@@ -13,6 +14,7 @@
         public ApplicationUser()
         {
             this.CreatedOn = DateTime.Now;
+            this.RatingAnswers = new List<int>();
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -24,6 +26,8 @@
         }
 
         public string FullName { get; set; }
+
+        public IList<int> RatingAnswers { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

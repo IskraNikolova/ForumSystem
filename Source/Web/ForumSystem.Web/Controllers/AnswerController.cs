@@ -72,15 +72,25 @@
         [ValidateAntiForgeryToken]
         public ActionResult RateConfirmed(int id)
         {
-            Answer answer = this.answers
+            var user = this.users.All().
+                FirstOrDefault(u => u.UserName == this.User.Identity.Name);
+
+            Answer answer = this.answers               
                 .All()
+                .Include(a => a.Author)
                 .FirstOrDefault(a => a.Id == id);
-            if (answer != null)
+
+            if (!user.RatingAnswers.Contains(answer.Id))
             {
                 answer.Rating++;
+                user.RatingAnswers.Add(answer.Id);
             }
 
+            //todo different logic for redirect to action of else
+
             this.answers.SaveChanges();
+            this.users.SaveChanges();
+
             return this.RedirectToAction("ViewAll", new {id = answer.PostId});
         }
 

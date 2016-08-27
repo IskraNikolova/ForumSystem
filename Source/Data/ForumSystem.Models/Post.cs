@@ -24,7 +24,6 @@ namespace ForumSystem.Models
         [Required]
         public string Content { get; set; }
 
-
         public Tag Tag { get; set; }
 
         public IList<Answer> Answers { get; set; }
