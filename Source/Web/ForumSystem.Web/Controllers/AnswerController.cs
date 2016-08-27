@@ -80,17 +80,19 @@
                 .Include(a => a.Author)
                 .FirstOrDefault(a => a.Id == id);
 
-            if (!user.RatingAnswers.Contains(answer.Id))
+            if (answer.RatingUsers == null)
             {
-                answer.Rating++;
-                user.RatingAnswers.Add(answer.Id);
+                answer.RatingUsers = string.Empty;
             }
 
-            //todo different logic for redirect to action of else
+            if (!answer.RatingUsers.Contains(user.UserName))
+            {
+                answer.Rating++;
+                answer.RatingUsers += user.UserName;
+            }
+
 
             this.answers.SaveChanges();
-            this.users.SaveChanges();
-
             return this.RedirectToAction("ViewAll", new {id = answer.PostId});
         }
 
