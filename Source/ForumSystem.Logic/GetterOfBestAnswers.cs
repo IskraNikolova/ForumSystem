@@ -6,7 +6,7 @@
 
     public class GetterOfBestAnswers
     {
-        private const int DefaultLength = 5;
+        private const int DefaultLength = 3;
 
         public static IEnumerable<Answer> GetBestAnswers(IEnumerable<Post> all, int length = DefaultLength)
         {

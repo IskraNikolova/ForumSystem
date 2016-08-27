@@ -6,13 +6,11 @@
 }
 
 <div class="jumbotron jumbotron-fluid">
-    <div class="container">
         <div class="panel panel-success">
             <h1 class="display-3">
                 <span>Hello, User!</span>
             </h1>
             <p class="lead">Еach question has its own answer.</p>
-        </div>
         </div>
 </div>
 <div class="row">
@@ -34,25 +32,25 @@
             <p><b>THE BEST ANSWERS</b></p>
             @{ var bestAnswers = GetterOfBestAnswers.GetBestAnswers(Model); }
             @foreach (var answer in bestAnswers)
-            { 
-                <div class="panel panel-success">
-                    <h3>
-                        @answer.Post.Title
-                    </h3>
-                    @if (@answer.Author != null)
-                    {
-                        <p>
-                            <i>by @answer.Author.FullName</i>
-                        </p>
-                    }
-                    <hr/>
-                    <div class="panel-body">
-                        <p>
-                            @Html.Raw(ForumSystem.Logic.ТextТransformer.CutText(answer.Content))
-                            <i>@Html.ActionLink("read more...", "ViewReadMore", "Questions", new {id = answer.PostId}, null)</i>
-                        </p>
-                    </div>
+            {
+                <h3>
+                    @answer.Post.Title
+                </h3>
+                if (answer.Author != null)
+                {
+                    <p>
+                        <i>by @answer.Author.FullName</i>
+                    </p>
+                }
+                <hr />
+                <div class="panel-body">
+                    <p>
+                        @Html.Raw(ForumSystem.Logic.ТextТransformer.CutText(answer.Content))
+                        <i>@Html.ActionLink("read more...", "ViewReadMore", "Questions", new {id = answer.PostId}, null)</i>
+                    </p>
                 </div>
+                <hr />  
+               <hr />
             }
         </div>
     </div>

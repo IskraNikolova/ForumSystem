@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Security.AccessControl;
     using Data.Common.Models;
 
     public class Answer : AuditInfo, IDeletableEntity
@@ -14,6 +15,8 @@
         public string Content { get; set; }
 
         public int PostId { get; set; }
+
+        public string PostTag { get; set; }
 
         public int Rating { get; set; }
 
