@@ -105,13 +105,8 @@
 
             if (tag == null)
             { 
-                tag = new Tag
-                {
-                    Name = "other"
-                };
-
-                this.tags.Add(tag);
-                this.tags.SaveChanges();
+                tag = this.tags.All()
+                .FirstOrDefault(t => t.Name == "other");
             }
 
             var author = this.users
