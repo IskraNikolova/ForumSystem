@@ -120,13 +120,13 @@
         [ValidateAntiForgeryToken]
         public ActionResult Create(int id, AnswerInputModel input)
         {
-            var aswerAuthor = this.users
+            var answerAuthor = this.users
                 .All()
                 .FirstOrDefault(u => u.UserName == this.User.Identity.Name);
 
-            if (aswerAuthor != null)
+            if (answerAuthor != null)
             {
-                this.users.Detach(aswerAuthor);
+                this.users.Detach(answerAuthor);
             }
 
             if (this.ModelState.IsValid)
@@ -135,7 +135,7 @@
                 {
                     Content = this.sanitizer.Sanitize(input.Content),
                     PostId = id,
-                    Author = aswerAuthor
+                    Author = answerAuthor
                 };
 
                 this.answers.Add(answer);

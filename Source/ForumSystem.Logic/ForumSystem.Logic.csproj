@@ -40,8 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GetterOfBestAnswers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ТextТransformer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Data\ForumSystem.Data.Common\ForumSystem.Data.Common.csproj">
+      <Project>{6D2A1FBC-D661-47E5-BAC8-EEAEBE5D9E09}</Project>
+      <Name>ForumSystem.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data\ForumSystem.Models\ForumSystem.Data.Models.csproj">
+      <Project>{45BE66FE-064A-41B2-8DB6-F956D9BB4030}</Project>
+      <Name>ForumSystem.Data.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

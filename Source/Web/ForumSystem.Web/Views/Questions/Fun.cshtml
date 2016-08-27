@@ -15,19 +15,18 @@
             </h3>
             @if (@post.Author != null)
             {
-                <p><i>by @post.Author.Email</i>
+                <p>
+                    <i>by @post.Author.Email</i>
                 </p>
             }
-            else
-            {
-                @Html.Display("Anonymous")
-            }
+
             <hr/>
             <div class="panel-body">
                 <p>
                     @Html.Raw(ForumSystem.Logic.ТextТransformer.CutText(post.Content))
                     <i>@Html.ActionLink("read more...", "ViewReadMore", "Questions", new {id = post.Id}, null)</i>
                 </p>
+
                 <span class="label label-success">
                     @Html.ActionLink("Add Comment", "Create", "Answer", new {id = post.Id}, null)
                 </span>
