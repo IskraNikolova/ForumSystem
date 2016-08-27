@@ -3,7 +3,10 @@
     ViewBag.Title = "Ask question";
 }
 
-<h1><p class="text-success">@ViewBag.Title</p></h1>
+<h1>
+    <p class="text-success">@ViewBag.Title</p>
+</h1>
+
 <body class="body-content">
     @using (Html.BeginForm("Ask", "Questions", FormMethod.Post))
     {

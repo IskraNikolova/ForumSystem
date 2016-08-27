@@ -1,9 +1,8 @@
 ﻿body {
     background-image: url(askme.jpg);
-    background-size: 80% 400%;
     background-size: cover;
     background-repeat: no-repeat;
-}
+}  
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -25,9 +24,14 @@ textarea {
     max-width: 280px;
 }
 
-.container {
-    opacity: 0.97;
+.panel {
+    padding: 1%;
+    opacity: 0.95;
 }
+.col-md-9 {
+    width: 75%;
+}
+
 .forum {
     margin-left: 10px;
 }
