@@ -7,10 +7,11 @@ namespace ForumSystem.Models
     using Data.Common.Models;
 
     public class Post : AuditInfo, IDeletableEntity
-    {
+    { 
         public Post()
         {
             this.Answers = new List<Answer>();
+            
         }
 
         [Key]

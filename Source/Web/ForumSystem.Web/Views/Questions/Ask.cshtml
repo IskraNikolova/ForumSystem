@@ -19,12 +19,11 @@
             <div>
                 @Html.EditorFor(model => model.Content)
             </div>
-            <div>
-                <p class="text-success">
-                    @Html.LabelFor(model => model.Tag)
-                </p>
-                @Html.EditorFor(model => model.Tag)
-            </div>
+            <p class="text-success">
+                @Html.LabelFor(model => model.Tag)
+            </p>
+            @Html.EditorFor(model => model.Tag)
+           
             <div class="form-group text-center">
                 <input type="submit" value="Ask question" class="btn btn-success btn-lg" />
             </div>

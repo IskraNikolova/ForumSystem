@@ -103,9 +103,15 @@
             var tag = this.tags.All()
                 .FirstOrDefault(t => t.Name == input.Tag);
 
-            if (tag != null)
-            {
-                this.tags.Detach(tag);
+            if (tag == null)
+            { 
+                tag = new Tag
+                {
+                    Name = "other"
+                };
+
+                this.tags.Add(tag);
+                this.tags.SaveChanges();
             }
 
             var author = this.users
