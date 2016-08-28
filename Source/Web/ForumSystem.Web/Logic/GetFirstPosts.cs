@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using ForumSystem.Models;
     using ViewModels.Home;
 
     public class GetFirstPosts
@@ -12,7 +11,7 @@
         public static IEnumerable<IndexBlogPostViewModel> GetFirstIndexPosts(IList<IndexBlogPostViewModel> all, int length = DefaultLength)
         {
 
-            var result = all.Take(length);
+            var result = all.OrderByDescending(p => p.CreatedOn).Take(length);
             return result;
         }
     }
