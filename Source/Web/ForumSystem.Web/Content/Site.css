@@ -4,8 +4,7 @@
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+
 }
 .navbar{
     background-color: whitesmoke;
@@ -53,7 +52,4 @@ textarea {
 
 .form-group {
     margin-top: 2%;
-}
-.nav {
-    margin-top: 10px;
 }
