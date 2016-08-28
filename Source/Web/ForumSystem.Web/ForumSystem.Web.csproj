@@ -214,7 +214,6 @@
     <Compile Include="ViewModels\Questions\QuestionDisplayViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\ask.png" />
     <Content Include="Content\blackboard.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
