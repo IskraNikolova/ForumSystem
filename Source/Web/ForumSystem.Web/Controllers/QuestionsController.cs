@@ -35,10 +35,9 @@
         public ActionResult Index()
         {
             var allPosts = this.posts.All()
-                .Include(p => p.Author)
-                .Project()
-                .To<IndexBlogPostViewModel>()
-                .ToList();
+                               .Include(p => p.Author)
+                               .Project()
+                               .To<IndexBlogPostViewModel>();
 
             return this.View(allPosts);
         }
@@ -162,9 +161,9 @@
         public ActionResult Music()
         {
             var allPosts = this.posts.All()
-                .Where(p => p.Tag.Name == "music")
-                .Project().To<IndexBlogPostViewModel>()
-                .ToList();
+                               .Where(p => p.Tag.Name == "music")
+                               .Project().To<IndexBlogPostViewModel>();
+
 
             return this.View(allPosts);
         }
@@ -172,10 +171,9 @@
         public ActionResult Sport()
         {
             var allPosts = this.posts.All()
-             .Where(p => p.Tag.Name == "sport")
-             .Project()
-             .To<IndexBlogPostViewModel>()
-             .ToList();
+                               .Where(p => p.Tag.Name == "sport")
+                               .Project()
+                               .To<IndexBlogPostViewModel>();
 
             return this.View(allPosts);
         }
@@ -193,10 +191,9 @@
         public ActionResult Programming()
         {
             var allPosts = this.posts.All()
-            .Where(p => p.Tag.Name == "programming")
-            .Project()
-            .To<IndexBlogPostViewModel>()
-            .ToList();
+                               .Where(p => p.Tag.Name == "programming")
+                               .Project()
+                               .To<IndexBlogPostViewModel>();
 
             return this.View(allPosts);
         }
