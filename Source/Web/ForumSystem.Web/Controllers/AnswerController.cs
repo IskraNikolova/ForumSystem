@@ -148,7 +148,7 @@
             return this.View(input);
         }
 
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrators")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
