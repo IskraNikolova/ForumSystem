@@ -21,7 +21,7 @@
         </p>
     }
     <hr />
-        @Html.Raw(ТextТransformer.CutText(answer.Content))
-        <i>@Html.ActionLink("read more...", "ViewReadMore", "Questions", new { id = answer.PostId }, null)</i>
-        <hr />
+    @Html.Raw(ТextТransformer.CutText(answer.Content))
+    <i>@Html.ActionLink("read more...", "ViewReadMore", "Questions", new { id = answer.PostId }, null)</i>
+    <hr/>
 }

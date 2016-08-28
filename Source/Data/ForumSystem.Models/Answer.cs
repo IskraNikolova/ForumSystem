@@ -16,8 +16,6 @@
 
         public int PostId { get; set; }
 
-        public string PostTag { get; set; }
-
         public int Rating { get; set; }
 
         public string RatingUsers { get; set; }
