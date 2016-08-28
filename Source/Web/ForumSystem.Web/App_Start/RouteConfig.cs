@@ -45,7 +45,7 @@
                 url: "Answer/ViewAnswer/{id}",
                 defaults: new { controller = "Answer", action = "ViewAll", id = UrlParameter.Optional }
                 );
-
+            //Answer/ViewAnswer/Delete/26
             routes.MapRoute(
                 name: "DeleteAnswer",
                 url: "Answer/ViewAnswer/Delete/{id}",

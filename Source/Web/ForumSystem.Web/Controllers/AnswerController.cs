@@ -101,10 +101,9 @@
         public ActionResult ViewAll(int id)
         {
             var viewAnswers = this.answers.All()
-                .Where(a => a.PostId == id)
-                .Project()
-                .To<AnswerViewModel>()
-                .ToList();
+                 .Where(a => a.PostId == id)
+                 .Project()
+                 .To<AnswerViewModel>();
 
             return this.View(viewAnswers);
         }
@@ -131,18 +130,13 @@
             {
                 this.users.Detach(answerAuthor);
             }
-            var post = this.posts.All().FirstOrDefault(p => p.Id == id);
-            if (post != null)
-            {
-                this.posts.Detach(post);
-            }
+
             if (this.ModelState.IsValid)
             {
                 var answer = new Answer
                 {
                     Content = this.sanitizer.Sanitize(input.Content),
                     PostId = id,
-                    Post = post,
                     Author = answerAuthor
                 };
 
@@ -154,7 +148,7 @@
             return this.View(input);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -182,7 +176,7 @@
 
             this.answers.Delete(answer);
             this.answers.SaveChanges();
-            return this.RedirectToAction("ViewAll", new {id = answer.PostId});
+            return this.RedirectToAction("ViewAll", new { id = answer.PostId });
         }
     }
 }
