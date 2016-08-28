@@ -49,6 +49,7 @@
             return this.View(answerViewModel);
         }
 
+        [Authorize]
         public ActionResult Rate(int? id)
         {
             if (id == null)
@@ -68,6 +69,7 @@
             return this.View(answer);
         }
 
+        [Authorize]
         [HttpPost, ActionName("Rate")]
         [ValidateAntiForgeryToken]
         public ActionResult RateConfirmed(int id)
@@ -146,6 +148,7 @@
             return this.View(input);
         }
 
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -162,6 +165,7 @@
             return this.View(answer);
         }
 
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

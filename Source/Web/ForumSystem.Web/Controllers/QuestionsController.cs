@@ -137,6 +137,7 @@
             return this.View(input);
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public ActionResult Delete(int? id)
         {
@@ -157,6 +158,7 @@
             return this.View(post);
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)

@@ -19,21 +19,19 @@
         @Html.Display("Anonymous")
     }
     <hr />
-    <div class="panel-body">
-        <p>
-            @Html.Raw(ForumSystem.Logic.ТextТransformer.CutText(post.Content))
-            <i>@Html.ActionLink("read more...", "ViewReadMore", "Questions", new { id = post.Id }, null)</i>
-        </p>
-        <div>
-            <span class="label label-success">@post.Tag.Name</span>
-        </div>
-        <span class="label label-success">
-            @Html.ActionLink("Add Comment", "Create", "Answer", new { id = post.Id }, null)
-        </span>
-        <span class="label label-warning">
-            @Html.ActionLink("Delete", "Delete", "Questions", new { id = post.Id }, null)
-        </span>
+    <p>
+        @Html.Raw(ForumSystem.Logic.ТextТransformer.CutText(post.Content))
+        <i>@Html.ActionLink("read more...", "ViewReadMore", "Questions", new { id = post.Id }, null)</i>
+    </p>
+    <div>
+        <span class="label label-success">@post.Tag.Name</span>
     </div>
+    <span class="label label-success">
+        @Html.ActionLink("Add Comment", "Create", "Answer", new { id = post.Id }, null)
+    </span>
+    <span class="label label-warning">
+        @Html.ActionLink("Delete", "Delete", "Questions", new { id = post.Id }, null)
+    </span>
     <div>
         <span class="label label-default">@post.Answers.Count Answers</span>
     </div>

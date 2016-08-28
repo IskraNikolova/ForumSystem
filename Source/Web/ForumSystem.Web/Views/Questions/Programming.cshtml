@@ -4,37 +4,36 @@
 }
 
 
-    @foreach (var post in Model)
+@foreach (var post in Model)
+{
+    <h3>
+        @post.Title
+    </h3>
+    if (post.Author != null)
     {
-            <h3>
-                @post.Title
-            </h3>
-            if (post.Author != null)
-            {
-                <p><i>by @post.Author.Email</i>
-                </p>
-            }
-            else
-            {
-                @Html.Display("Anonymous")
-            }
-            <hr/>
-            <div class="panel-body">
-                <p>
-                    @Html.Raw(ForumSystem.Logic.ТextТransformer.CutText(post.Content))
-                    <i>@Html.ActionLink("read more...", "ViewReadMore", "Questions", new {id = post.Id}, null)</i>
-                </p>
-                <span class="label label-success">
-                    @Html.ActionLink("Add Comment", "Create", "Answer", new {id = post.Id}, null)
-                </span>
-                <br/>
-                <span class="label label-warning">
-                    @Html.ActionLink("Delete", "Delete", "Questions", new {id = post.Id}, null)
-                </span>
-            </div>
-        <div>
-            <span class="label label-default">@post.Answers.Count(a => a.IsDeleted == false) Answers</span>
-        </div>
-        <hr />
-        <hr />
+        <p>
+            <i>by @post.Author.Email</i>
+        </p>
     }
+    else
+    {
+        @Html.Display("Anonymous")
+    }
+    <hr />
+    <p>
+        @Html.Raw(ForumSystem.Logic.ТextТransformer.CutText(post.Content))
+        <i>@Html.ActionLink("read more...", "ViewReadMore", "Questions", new { id = post.Id }, null)</i>
+    </p>
+    <span class="label label-success">
+        @Html.ActionLink("Add Comment", "Create", "Answer", new { id = post.Id }, null)
+    </span>
+    <br />
+    <span class="label label-warning">
+        @Html.ActionLink("Delete", "Delete", "Questions", new { id = post.Id }, null)
+    </span>
+    <div>
+        <span class="label label-default">@post.Answers.Count(a => a.IsDeleted == false) Answers</span>
+    </div>
+    <hr />
+    <hr />
+}

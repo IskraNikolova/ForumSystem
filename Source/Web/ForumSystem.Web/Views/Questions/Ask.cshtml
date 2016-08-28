@@ -7,29 +7,28 @@
     <p class="text-success">@ViewBag.Title</p>
 </h1>
 
-<body class="body-content">
-    @using (Html.BeginForm("Ask", "Questions", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary("", new { @class = "text-danger" })
-        <div class ="askForm">
-            <div>
-                <p class="text-success">
-                    @Html.LabelFor(model => model.Title)
-                </p>
-                @Html.EditorFor(model => model.Title)
-            </div>
-            <div>
-                @Html.EditorFor(model => model.Content)
-            </div>
+
+@using (Html.BeginForm("Ask", "Questions", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="askForm">
+        <div>
             <p class="text-success">
-                @Html.LabelFor(model => model.Tag)
+                @Html.LabelFor(model => model.Title)
             </p>
-            @Html.EditorFor(model => model.Tag)
-           
-            <div class="form-group text-center">
-                <input type="submit" value="Ask question" class="btn btn-success btn-lg" />
-            </div>
+            @Html.EditorFor(model => model.Title)
         </div>
-    }
-</body> 
+        <div>
+            @Html.EditorFor(model => model.Content)
+        </div>
+        <p class="text-success">
+            @Html.LabelFor(model => model.Tag)
+        </p>
+        @Html.EditorFor(model => model.Tag)
+
+        <div class="form-group text-center">
+            <input type="submit" value="Ask question" class="btn btn-success btn-lg" />
+        </div>
+    </div>
+}

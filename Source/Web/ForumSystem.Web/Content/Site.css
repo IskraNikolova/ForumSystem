@@ -33,3 +33,7 @@ textarea {
 .col-md-9 {
     width: 75%;
 }
+
+.form-group {
+    margin-top: 2%;
+}

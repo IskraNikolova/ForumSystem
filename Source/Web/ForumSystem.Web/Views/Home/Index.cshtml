@@ -6,24 +6,22 @@
 }
 
 <h1><span class="glyphicon glyphicon glyphicon-star-empty" aria-hidden="true">THE BEST ANSWERS</span></h1>
-<div class="body-content">
-    @{ var bestAnswers = GetterOfBestAnswers.GetBestAnswers(Model); }
-    @foreach (var answer in bestAnswers)
+@{ var bestAnswers = GetterOfBestAnswers.GetBestAnswers(Model); }
+@foreach (var answer in bestAnswers)
+{
+    <h3>
+        <span class="glyphicon glyphicon-question-sign" aria-hidden="true">
+            @answer.Post.Title
+        </span>
+    </h3>
+    if (answer.Author != null)
     {
-        <h3>
-            <span class="glyphicon glyphicon-question-sign" aria-hidden="true">
-                @answer.Post.Title
-            </span>
-        </h3>
-        if (answer.Author != null)
-        {
-            <p>
-                <i>by @answer.Author.FullName</i>
-            </p>
-        }
-        <hr />
+        <p>
+            <i>by @answer.Author.FullName</i>
+        </p>
+    }
+    <hr />
         @Html.Raw(ТextТransformer.CutText(answer.Content))
         <i>@Html.ActionLink("read more...", "ViewReadMore", "Questions", new { id = answer.PostId }, null)</i>
-            <hr />
-    }
-</div>
+        <hr />
+}
