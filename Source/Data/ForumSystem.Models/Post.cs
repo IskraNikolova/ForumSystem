@@ -17,16 +17,15 @@ namespace ForumSystem.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
         [MaxLength(100)]
         public string Title { get; set; }
 
-        [Required]
+
         public string Content { get; set; }
 
         public int Points { get; set; }
 
-        [Required]
+
         public Tag Tag { get; set; }
 
         public IList<Answer> Answers { get; set; }
