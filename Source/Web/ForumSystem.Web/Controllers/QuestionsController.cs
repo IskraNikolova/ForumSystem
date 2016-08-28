@@ -5,6 +5,7 @@
     using System.Data.Entity;
     using System.Linq;
     using System.Net;
+    using System.Web;
     using System.Web.Mvc;
     using AutoMapper.QueryableExtensions;
     using Data.Common.Repository;
@@ -35,7 +36,9 @@
         {
             var allPosts = this.posts.All()
                 .Include(p => p.Author)
-                .Project().To<IndexBlogPostViewModel>();
+                .Project()
+                .To<IndexBlogPostViewModel>()
+                .ToList();
 
             return this.View(allPosts);
         }
@@ -47,7 +50,8 @@
                 .Include(p => p.Author)
                 .Where(p => p.Id == id)
                 .Project()
-                .To<QuestionDisplayViewModel>().FirstOrDefault();
+                .To<QuestionDisplayViewModel>()
+                .FirstOrDefault();
 
             if (postViewModel == null)
             {
@@ -57,24 +61,6 @@
             return this.View(postViewModel);
         }
 
-        public ActionResult GetByTag(string tag)
-        {
-            List<Post> postsWithSameTag = new List<Post>();
-            ////var tagMy = new Tag
-            ////{
-            ////    Name = tag,
-            ////};
-
-            ////foreach (var post in this.posts.All())
-            ////{
-            ////    if (post.Tags.Contains(tagMy))
-            ////    {
-            ////        postsWithSameTag.Add(post);
-            ////    }
-            ////}
-
-            return this.Content(string.Join("\n", postsWithSameTag));
-        }
         public ActionResult ViewReadMore(int id)
         {
             var viewQuestion = this.posts.All()
@@ -177,7 +163,8 @@
         {
             var allPosts = this.posts.All()
                 .Where(p => p.Tag.Name == "music")
-                .Project().To<IndexBlogPostViewModel>();
+                .Project().To<IndexBlogPostViewModel>()
+                .ToList();
 
             return this.View(allPosts);
         }
@@ -186,7 +173,9 @@
         {
             var allPosts = this.posts.All()
              .Where(p => p.Tag.Name == "sport")
-             .Project().To<IndexBlogPostViewModel>();
+             .Project()
+             .To<IndexBlogPostViewModel>()
+             .ToList();
 
             return this.View(allPosts);
         }
@@ -195,7 +184,8 @@
         {
             var allPosts = this.posts.All()
                .Where(p => p.Tag.Name == "fun")
-               .Project().To<IndexBlogPostViewModel>();
+               .Project()
+               .To<IndexBlogPostViewModel>();
 
             return this.View(allPosts);
         }
@@ -204,7 +194,9 @@
         {
             var allPosts = this.posts.All()
             .Where(p => p.Tag.Name == "programming")
-            .Project().To<IndexBlogPostViewModel>();
+            .Project()
+            .To<IndexBlogPostViewModel>()
+            .ToList();
 
             return this.View(allPosts);
         }

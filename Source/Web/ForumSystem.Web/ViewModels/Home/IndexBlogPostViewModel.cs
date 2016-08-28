@@ -1,5 +1,6 @@
 ﻿namespace ForumSystem.Web.ViewModels.Home
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using ForumSystem.Models;
@@ -26,5 +27,7 @@
 
         [Display(Name = "Author")]
         public ApplicationUser Author { get; set; }
+
+        public DateTime CreatedOn{ get; set; }
     }
 }

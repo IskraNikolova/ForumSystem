@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{9E97925B-73EF-4480-A319-363EDA3CA963}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logic", "Logic", "{FC455D6D-9558-4F03-81A7-8A0F76995216}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{C51932D7-D9BA-41AD-8AA2-2C107CD7EA87}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForumSystem.Common", "ForumSystem.Common\ForumSystem.Common.csproj", "{E0488BA6-9C18-4C47-9A43-A9937FC98DC2}"
@@ -20,8 +18,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForumSystem.Data.Common", "Data\ForumSystem.Data.Common\ForumSystem.Data.Common.csproj", "{6D2A1FBC-D661-47E5-BAC8-EEAEBE5D9E09}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForumSystem.Web.Infrastructure", "Web\ForumSystem.Web.Infrastructure\ForumSystem.Web.Infrastructure.csproj", "{E2B1E687-8DDC-4972-A340-CF2AC8639B42}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForumSystem.Logic", "ForumSystem.Logic\ForumSystem.Logic.csproj", "{08A257F2-1D6C-4DDC-8F99-7D7E2FDD8F6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +49,6 @@ Global
 		{E2B1E687-8DDC-4972-A340-CF2AC8639B42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2B1E687-8DDC-4972-A340-CF2AC8639B42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2B1E687-8DDC-4972-A340-CF2AC8639B42}.Release|Any CPU.Build.0 = Release|Any CPU
-		{08A257F2-1D6C-4DDC-8F99-7D7E2FDD8F6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{08A257F2-1D6C-4DDC-8F99-7D7E2FDD8F6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{08A257F2-1D6C-4DDC-8F99-7D7E2FDD8F6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{08A257F2-1D6C-4DDC-8F99-7D7E2FDD8F6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +59,5 @@ Global
 		{F819A35D-19D4-4D20-A725-06B2825C2258} = {C51932D7-D9BA-41AD-8AA2-2C107CD7EA87}
 		{6D2A1FBC-D661-47E5-BAC8-EEAEBE5D9E09} = {9E97925B-73EF-4480-A319-363EDA3CA963}
 		{E2B1E687-8DDC-4972-A340-CF2AC8639B42} = {C51932D7-D9BA-41AD-8AA2-2C107CD7EA87}
-		{08A257F2-1D6C-4DDC-8F99-7D7E2FDD8F6E} = {FC455D6D-9558-4F03-81A7-8A0F76995216}
 	EndGlobalSection
 EndGlobal

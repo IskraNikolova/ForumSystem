@@ -24,6 +24,8 @@ namespace ForumSystem.Models
         [Required]
         public string Content { get; set; }
 
+        public int Points { get; set; }
+
         [Required]
         public Tag Tag { get; set; }
 

@@ -103,7 +103,8 @@
             var viewAnswers = this.answers.All()
                 .Where(a => a.PostId == id)
                 .Project()
-                .To<AnswerViewModel>();
+                .To<AnswerViewModel>()
+                .ToList();
 
             return this.View(viewAnswers);
         }
@@ -130,13 +131,18 @@
             {
                 this.users.Detach(answerAuthor);
             }
-
+            var post = this.posts.All().FirstOrDefault(p => p.Id == id);
+            if (post != null)
+            {
+                this.posts.Detach(post);
+            }
             if (this.ModelState.IsValid)
             {
                 var answer = new Answer
                 {
                     Content = this.sanitizer.Sanitize(input.Content),
                     PostId = id,
+                    Post = post,
                     Author = answerAuthor
                 };
 

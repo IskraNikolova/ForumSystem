@@ -3,26 +3,25 @@
     using System.Data.Entity;
     using System.Linq;
     using System.Web.Mvc;
+    using AutoMapper.QueryableExtensions;
     using Data.Common.Repository;
     using ForumSystem.Models;
+    using ViewModels.Home;
 
     public class HomeController : Controller
     {
         private readonly IDeletableEntityRepository<Post> posts;
-        private readonly IDeletableEntityRepository<Answer> answers;
 
-        public HomeController(IDeletableEntityRepository<Post> posts, IDeletableEntityRepository<Answer> answers)
+        public HomeController(IDeletableEntityRepository<Post> posts)
         {
             this.posts = posts;
-            this.answers = answers;
         }
 
         public ActionResult Index()
         {
             var allposts = this.posts.All()
-                  .Include(p => p.Author)
-                  .Include(p => p.Answers)
-                  .ToList();
+                    .Project().To<IndexBlogPostViewModel>()
+                    .ToList();
 
             return this.View(allposts);
         }

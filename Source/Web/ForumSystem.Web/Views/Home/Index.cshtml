@@ -1,27 +1,28 @@
-﻿@using ForumSystem.Logic
-@using ForumSystem.Models
-@model IEnumerable<Post>
+﻿
+@using ForumSystem.Web.Logic
+@model IList<ForumSystem.Web.ViewModels.Home.IndexBlogPostViewModel>
 @{
     ViewBag.Title = "Home Page";
 }
 
 <h1><span class="glyphicon glyphicon glyphicon-star-empty" aria-hidden="true">THE BEST ANSWERS</span></h1>
-@{ var bestAnswers = GetterOfBestAnswers.GetBestAnswers(Model); }
-@foreach (var answer in bestAnswers)
+
+@{ var firstPosts = GetFirstPosts.GetFirstIndexPosts(Model); }
+@foreach (var post in firstPosts)
 {
     <h3>
         <span class="glyphicon glyphicon-question-sign" aria-hidden="true">
-            @answer.Post.Title
+            @post.Title
         </span>
     </h3>
-    if (answer.Author != null)
+    if (post.Author != null)
     {
         <p>
-            <i>by @answer.Author.FullName @answer.Post.CreatedOn</i>
+            <i>by @post.Author.FullName @post.CreatedOn</i>
         </p>
     }
     <hr />
-    @Html.Raw(ТextТransformer.CutText(answer.Content))
-    <i>@Html.ActionLink("read more...", "ViewReadMore", "Questions", new { id = answer.PostId }, null)</i>
+    @Html.Raw(ТextТransformer.CutText(post.Content))
+    <i>@Html.ActionLink("read more...", "ViewReadMore", "Questions", new { id = post.Id }, null)</i>
     <hr/>
 }

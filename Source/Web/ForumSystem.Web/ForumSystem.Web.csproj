@@ -203,6 +203,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logic\GetFirstPosts.cs" />
+    <Compile Include="Logic\ТextТransformer.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -216,7 +218,7 @@
     <Content Include="Content\blackboard.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\header.jpeg" />
+    <Content Include="Content\header.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -531,10 +533,6 @@
     <ProjectReference Include="..\..\ForumSystem.Common\ForumSystem.Common.csproj">
       <Project>{e0488ba6-9c18-4c47-9a43-a9937fc98dc2}</Project>
       <Name>ForumSystem.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ForumSystem.Logic\ForumSystem.Logic.csproj">
-      <Project>{08a257f2-1d6c-4ddc-8f99-7d7e2fdd8f6e}</Project>
-      <Name>ForumSystem.Logic</Name>
     </ProjectReference>
     <ProjectReference Include="..\ForumSystem.Web.Infrastructure\ForumSystem.Web.Infrastructure.csproj">
       <Project>{e2b1e687-8ddc-4972-a340-cf2ac8639b42}</Project>
