@@ -1,4 +1,5 @@
-﻿@model  IEnumerable<ForumSystem.Web.ViewModels.Home.IndexBlogPostViewModel>
+﻿@using ForumSystem.Web.Logic
+@model  IEnumerable<ForumSystem.Web.ViewModels.Home.IndexBlogPostViewModel>
 @{
     ViewBag.Title = "Index";
 }
@@ -18,7 +19,7 @@
 
     <hr />
     <p>
-        @Html.Raw(ForumSystem.Logic.ТextТransformer.CutText(post.Content))
+        @Html.Raw(ТextТransformer.CutText(post.Content))
         <i>@Html.ActionLink("read more...", "ViewReadMore", "Questions", new { id = post.Id }, null)</i>
     </p>
     <span class="label label-success">
