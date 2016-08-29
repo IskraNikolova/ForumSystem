@@ -38,5 +38,7 @@
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
+
+        public byte[] UserPhoto { get; set; }
     }
 }

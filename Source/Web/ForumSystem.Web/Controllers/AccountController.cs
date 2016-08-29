@@ -12,6 +12,7 @@ using ForumSystem.Web.Models;
 
 namespace ForumSystem.Web.Controllers
 {
+    using System.IO;
     using ForumSystem.Models;
     using Infrastructure.Mapping;
 
@@ -73,7 +74,7 @@ namespace ForumSystem.Web.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return View(model);
+                return this.View(model);
             }
 
             // This doesn't count login failures towards account lockout
@@ -90,7 +91,7 @@ namespace ForumSystem.Web.Controllers
                 case SignInStatus.Failure:
                 default:
                     this.ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                    return this.View(model);
             }
         }
 
@@ -150,27 +151,35 @@ namespace ForumSystem.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register([Bind(Exclude = "UserPhoto")]RegisterViewModel model)
         {
-            if (this.ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                var user = new ApplicationUser
+
+                // To convert the user uploaded Photo as Byte Array before save to DB 
+                byte[] imageData = null;
+                if (this.Request.Files.Count > 0)
                 {
-                    UserName = model.Email,
-                    Email = model.Email,
-                    FullName = model.FullName
-                };
+                    HttpPostedFileBase httpPostedFileBase = this.Request.Files["UserPhoto"];
+
+                    using (var binary = new BinaryReader(httpPostedFileBase.InputStream))
+                    {
+                        imageData = binary.ReadBytes(httpPostedFileBase.ContentLength);
+                    }
+                }
+
+
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FullName = model.FullName};
+
+                //Here we pass the byte array to user context to store in db 
+                user.UserPhoto = imageData;
 
                 var result = await this.UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await this.SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    await this.SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771              
 
                     return this.RedirectToAction("Index", "Home");
                 }
@@ -178,7 +187,7 @@ namespace ForumSystem.Web.Controllers
                 this.AddErrors(result);
             }
 
-            // If we got this far, something failed, redisplay form
+            // If we got this far, something failed, redisplay form 
             return this.View(model);
         }
 
