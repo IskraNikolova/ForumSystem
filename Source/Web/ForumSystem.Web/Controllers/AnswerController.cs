@@ -31,24 +31,6 @@
             this.sanitizer = sanitizer;
         }
 
-        public ActionResult Display(int id, string url = "", int page = 1)
-        {
-            var answerViewModel = this.answers
-                          .All()
-                          .Include(p => p.Author)
-                          .Where(a => a.Id == id)
-                          .Project()
-                          .To<AnswerViewModel>()
-                          .FirstOrDefault();
-
-            if (answerViewModel == null)
-            {
-                return this.HttpNotFound("Not found answer.");
-            }
-
-            return this.View(answerViewModel);
-        }
-
         [Authorize]
         public ActionResult Rate(int? id)
         {
@@ -91,7 +73,13 @@
             {
                 answer.RatingUp++;
                 answer.RatingPoint++;
-                answer.RatingUpUsers += user.UserName;
+                answer.RatingUpUsers += user.UserName;              
+                if (answer.RatingPoint%10 == 0)
+                {
+                    answer.Author.Points += 1000;
+                }
+
+                answer.Author.Points += 100;
             }
 
 
@@ -142,21 +130,12 @@
                 answer.RatingDown++;
                 answer.RatingPoint--;
                 answer.RatingDownUsers += user.UserName;
+                user.Points -= 100;
             }
 
 
             this.answers.SaveChanges();
             return this.RedirectToAction("ViewReadMore", "Questions", new { id = answer.PostId });
-        }
-
-        public ActionResult ViewAll(int id)
-        {
-            var viewAnswers = this.answers.All()
-                 .Where(a => a.PostId == id)
-                 .Project()
-                 .To<AnswerViewModel>();
-
-            return this.View(viewAnswers);
         }
 
         [HttpGet]

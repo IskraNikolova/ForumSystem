@@ -10,8 +10,7 @@ namespace ForumSystem.Models
     { 
         public Post()
         {
-            this.Answers = new List<Answer>();
-            
+            this.Answers = new List<Answer>();            
         }
 
         [Key]
@@ -20,11 +19,7 @@ namespace ForumSystem.Models
         [MaxLength(100)]
         public string Title { get; set; }
 
-
         public string Content { get; set; }
-
-        public int Points { get; set; }
-
 
         public Tag Tag { get; set; }
 

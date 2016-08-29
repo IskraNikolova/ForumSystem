@@ -14,12 +14,14 @@
     using InputModels.Question;
     using ViewModels.Home;
     using ViewModels.Questions;
+    using WebGrease.Css.Extensions;
 
     public class QuestionsController : Controller
     {
         private readonly IDeletableEntityRepository<Post> posts;
         private readonly IDeletableEntityRepository<ApplicationUser> users;
         private readonly IDeletableEntityRepository<Tag> tags;
+        private readonly IDeletableEntityRepository<Answer> answers;
         private readonly ISanitizer sanitizer;
 
         public QuestionsController(IDeletableEntityRepository<Post> posts,
@@ -63,16 +65,17 @@
         public ActionResult ViewReadMore(int id)
         {
             var viewQuestion = this.posts.All()
-                .Include(p => p.Tag)
+                .Include(p => p.Tag)  
+                .Include(p => p.Answers) 
                 .Where(p => p.Id == id)
                 .Project()
                 .To<QuestionDisplayViewModel>()
                 .FirstOrDefault();
 
+
             return this.View(viewQuestion);
         }
 
-        [HttpGet]
         [Authorize]
         public ActionResult Ask()
         {

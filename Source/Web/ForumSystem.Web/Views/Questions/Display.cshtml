@@ -5,8 +5,10 @@
 <div class="body-content">
     <div class="panel panel-success">
         <h1>@ViewBag.Title</h1>
+        <hr/>
         <div class="panel-body">
             @Html.Raw(Model.Content)
+            @Html.ActionLink("Back to List", "Index")
         </div>
     </div>
 </div>

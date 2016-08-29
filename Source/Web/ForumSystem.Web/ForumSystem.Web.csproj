@@ -491,12 +491,10 @@
     <Content Include="Views\Shared\EditorTemplates\tinymce_full_compressed.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\tinymce_full.cshtml" />
     <Content Include="Views\Questions\Display.cshtml" />
-    <Content Include="Views\Answer\Display.cshtml" />
     <Content Include="Views\Answer\Create.cshtml" />
     <None Include="Views\Answer\Delete.cshtml" />
     <None Include="Views\Answer\Rate.cshtml" />
     <Content Include="Views\Answer\RateDown.cshtml" />
-    <None Include="Views\Answer\ViewAll.cshtml" />
     <Content Include="Views\Questions\Index.cshtml" />
     <None Include="Views\Questions\Delete.cshtml" />
     <None Include="Views\Questions\Fun.cshtml" />
