@@ -1,13 +1,19 @@
 ﻿
+@using System.Xml.Schema
 @using ForumSystem.Web.Logic
-@model IList<ForumSystem.Web.ViewModels.Home.IndexBlogPostViewModel>
+@model Tuple< IList<ForumSystem.Models.ApplicationUser>, IList<ForumSystem.Web.ViewModels.Home.IndexBlogPostViewModel>> 
 @{
     ViewBag.Title = "Home Page";
 }
 
 <h1><span class="glyphicon glyphicon glyphicon-star-empty" aria-hidden="true">THE LAST POST</span></h1>
+@{ var firstUsers = GetUserWithTheBestResult.RatingByPoints(Model.Item1.ToList()); }
+@foreach (var user in firstUsers)
+{
+    <p>@user.FullName Total Points: @user.Points</p>
+}
 
-@{ var firstPosts = GetFirstPosts.GetFirstIndexPosts(Model); }
+@{ var firstPosts = GetFirstPosts.GetFirstIndexPosts(Model.Item2.ToList()); }
 @foreach (var post in firstPosts)
 {
     <h3>
