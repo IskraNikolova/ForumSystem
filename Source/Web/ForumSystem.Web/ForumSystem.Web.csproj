@@ -496,6 +496,7 @@
     <None Include="Views\Answer\Rate.cshtml" />
     <Content Include="Views\Answer\RateDown.cshtml" />
     <Content Include="Views\Questions\Index.cshtml" />
+    <None Include="Views\Answer\ViewAnswersOfPost.cshtml" />
     <None Include="Views\Questions\Delete.cshtml" />
     <None Include="Views\Questions\Fun.cshtml" />
     <None Include="Views\Questions\Music.cshtml" />

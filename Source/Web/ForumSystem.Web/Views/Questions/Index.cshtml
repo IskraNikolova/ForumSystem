@@ -11,13 +11,7 @@
     </h3>
     if (post.Author != null)
     {
-        <p>
-            <i>by @post.Author.Email</i>
-        </p>
-    }
-    else
-    {
-        @Html.Display("Anonymous")
+        <p> <i>by @post.Author.Email (Total Point: @post.Author.Points)</i></p>
     }
     <hr />
     <p>

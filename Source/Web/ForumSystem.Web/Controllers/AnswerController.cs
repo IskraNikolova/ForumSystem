@@ -208,5 +208,16 @@
             this.answers.SaveChanges();
             return this.RedirectToAction("ViewReadMore", "Questions", new { id = answer.PostId });
         }
+
+        public ActionResult ViewAnswersOfPost(int id)
+        {
+            var answers = this.answers
+                .All()
+                .Where(a => a.PostId == id)
+                .Project()
+                .To<AnswerViewModel>();
+
+            return this.View(answers);
+        }
     }
 }

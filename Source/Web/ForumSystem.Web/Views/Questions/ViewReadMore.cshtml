@@ -2,10 +2,11 @@
 
 <div class="panel panel-success">
     <div>
-            <h3>
-                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-                @Model.Title
-            </h3>
+        <h3>
+            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+            @Model.Title
+        </h3>
+        <i>by @Model.Author.FullName (Total points: @Model.Author.Points)</i>
         </div>
         <div class="panel-body">
             <p>@Html.Raw(Model.Content)</p>
@@ -14,32 +15,5 @@
             </span>
             <hr />
         </div>
- 
-    @foreach (var answer in Model.Answers)
-    {
-        <div class="panel-body">
-            <span class="glyphicon glyphicon-pencil" aria-hidden="true">
-                @if (answer.Author != null)
-                {
-                    <p>@answer.Author.FullName  PUBLISHED @answer.CreatedOn</p>
-                }
-            </span>
-            @Html.Raw(answer.Content)
-        </div>
-        <div>
-            <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Tooltip on left">
-                @Html.ActionLink("Delete", "Delete", "Answer", new { id = answer.Id }, null)
-            </button>
-
-            <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span>
-            @Html.ActionLink(" Rate up", "Rate", "Answer", new { id = answer.Id }, null)
-            @answer.RatingUp
-
-
-            @Html.ActionLink(" Rate down", "RateDown", "Answer", new { id = answer.Id }, null)
-            <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-            @answer.RatingDown
-        </div>
-        <hr />
-    }
+           @Html.ActionLink("View comments", "ViewAnswersOfPost", "Answer", new { id = Model.Id }, null)  
 </div>
