@@ -503,6 +503,7 @@
     <None Include="Views\Questions\Music.cshtml" />
     <None Include="Views\Questions\Programming.cshtml" />
     <None Include="Views\Questions\Sport.cshtml" />
+    <None Include="Views\Questions\ViewReadMore.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -96,7 +96,7 @@
 
 
             this.answers.SaveChanges();
-            return this.RedirectToAction("ViewAll", new {id = answer.PostId});
+            return this.RedirectToAction("ViewReadMore","Questions", new {id = answer.PostId});
         }
 
         [Authorize]
@@ -146,7 +146,7 @@
 
 
             this.answers.SaveChanges();
-            return this.RedirectToAction("ViewAll", new { id = answer.PostId });
+            return this.RedirectToAction("ViewReadMore", "Questions", new { id = answer.PostId });
         }
 
         public ActionResult ViewAll(int id)
@@ -193,7 +193,7 @@
 
                 this.answers.Add(answer);
                 this.answers.SaveChanges();
-                return this.RedirectToAction("ViewAll");
+                return this.RedirectToAction("ViewReadMore", "Questions", new { id = answer.PostId });
             }
 
             return this.View(input);
@@ -227,7 +227,7 @@
 
             this.answers.Delete(answer);
             this.answers.SaveChanges();
-            return this.RedirectToAction("ViewAll", new { id = answer.PostId });
+            return this.RedirectToAction("ViewReadMore", "Questions", new { id = answer.PostId });
         }
     }
 }

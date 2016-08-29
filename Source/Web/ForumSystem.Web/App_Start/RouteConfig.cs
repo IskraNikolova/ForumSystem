@@ -13,7 +13,7 @@
           routes.MapRoute(
              name: "View question",
              url: "Questions/ViewReadMore/{id}",
-             defaults: new { controller = "Answer", action = "ViewAll", id = UrlParameter.Optional }
+             defaults: new { controller = "Questions", action = "ViewReadMore", id = UrlParameter.Optional }
              );
 
             routes.MapRoute(
@@ -43,7 +43,7 @@
             routes.MapRoute(
                 name: "ViewAnswer",
                 url: "Answer/ViewAnswer/{id}",
-                defaults: new { controller = "Answer", action = "ViewAll", id = UrlParameter.Optional }
+                defaults: new { controller = "Questions", action = "ViewReadMore", id = UrlParameter.Optional }
                 );
             //Answer/ViewAnswer/Delete/26
             routes.MapRoute(
