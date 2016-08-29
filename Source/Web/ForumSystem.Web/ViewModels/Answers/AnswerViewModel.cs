@@ -29,8 +29,11 @@
         [Display(Name = "PostId")]
         public int PostId { get; set; }
 
-        [Display(Name = "Rating")]
-        public int Rating { get; set; }
+        [Display(Name = "RatingUp")]
+        public int RatingUp { get; set; }
+
+        [Display(Name = "RatingDown")]
+        public int RatingDown { get; set; }
 
         [Display(Name = "Author")]
         public ApplicationUser Author { get; set; }

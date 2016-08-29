@@ -18,9 +18,15 @@
 
         public Post Post { get; set; }
 
-        public int Rating { get; set; }
+        public int RatingUp { get; set; }
 
-        public string RatingUsers { get; set; }
+        public int RatingDown { get; set; }
+
+        public int RatingPoint { get; set; }
+
+        public string RatingUpUsers { get; set; }
+
+        public string RatingDownUsers { get; set; }
 
         public ApplicationUser Author { get; set; }
 

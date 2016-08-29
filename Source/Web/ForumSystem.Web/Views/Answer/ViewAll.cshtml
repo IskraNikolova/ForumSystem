@@ -34,9 +34,15 @@
                     <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Tooltip on left">
                         @Html.ActionLink("Delete", "Delete", "Answer", new { id = answer.Id }, null)
                     </button>
-                    @answer.Rating
-                    @Html.ActionLink(" Rate", "Rate", "Answer", new { id = answer.Id }, null)
+
                     <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span>
+                    @Html.ActionLink(" Rate up", "Rate", "Answer", new { id = answer.Id }, null)
+                    @answer.RatingUp
+
+
+                    @Html.ActionLink(" Rate down", "RateDown", "Answer", new { id = answer.Id }, null)
+                    <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                    @answer.RatingDown            
                 </div>
                 <hr />
             }

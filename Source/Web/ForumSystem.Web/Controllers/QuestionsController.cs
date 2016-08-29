@@ -60,18 +60,6 @@
             return this.View(postViewModel);
         }
 
-        public ActionResult ViewReadMore(int id)
-        {
-            var viewQuestion = this.posts.All()
-                .Include(p => p.Tag)
-                .Where(p => p.Id == id)
-                .Project()
-                .To<QuestionDisplayViewModel>()
-                .FirstOrDefault();
-
-            return this.View(viewQuestion);
-        }
-
         [HttpGet]
         [Authorize]
         public ActionResult Ask()

@@ -82,20 +82,71 @@
                 .Include(a => a.Author)
                 .FirstOrDefault(a => a.Id == id);
 
-            if (answer.RatingUsers == null)
+            if (answer.RatingUpUsers == null)
             {
-                answer.RatingUsers = string.Empty;
+                answer.RatingUpUsers = string.Empty;
             }
 
-            if (!answer.RatingUsers.Contains(user.UserName))
+            if (!answer.RatingUpUsers.Contains(user.UserName))
             {
-                answer.Rating++;
-                answer.RatingUsers += user.UserName;
+                answer.RatingUp++;
+                answer.RatingPoint++;
+                answer.RatingUpUsers += user.UserName;
             }
 
 
             this.answers.SaveChanges();
             return this.RedirectToAction("ViewAll", new {id = answer.PostId});
+        }
+
+        [Authorize]
+        public ActionResult RateDown(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Answer answer = this.answers
+                .All()
+                .FirstOrDefault(a => a.Id == id);
+
+            if (answer == null)
+            {
+                return this.HttpNotFound();
+            }
+
+            return this.View(answer);
+        }
+
+        [Authorize]
+        [HttpPost, ActionName("RateDown")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RateDownConfirmed(int id)
+        {
+            var user = this.users.All().
+                FirstOrDefault(u => u.UserName == this.User.Identity.Name);
+
+            Answer answer = this.answers
+                .All()
+                .Include(a => a.Author)
+                .FirstOrDefault(a => a.Id == id);
+
+            if (answer.RatingDownUsers == null)
+            {
+                answer.RatingDownUsers = string.Empty;
+            }
+
+            if (!answer.RatingDownUsers.Contains(user.UserName))
+            {
+                answer.RatingDown++;
+                answer.RatingPoint--;
+                answer.RatingDownUsers += user.UserName;
+            }
+
+
+            this.answers.SaveChanges();
+            return this.RedirectToAction("ViewAll", new { id = answer.PostId });
         }
 
         public ActionResult ViewAll(int id)

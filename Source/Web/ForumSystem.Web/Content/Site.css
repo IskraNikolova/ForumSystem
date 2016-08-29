@@ -24,6 +24,7 @@ header {
     background-image: url(header.jpg);
     background-size: cover;  
 }
+
 article {
     margin-top: 10px;
     margin-right: 70px;
@@ -45,6 +46,9 @@ textarea {
 .panel {
     padding: 1%;
 }
+.col-md-3 {
+    margin-top: 11px; 
+}
 
 .col-md-9 {
     width: 75%;
@@ -52,4 +56,9 @@ textarea {
 
 .form-group {
     margin-top: 2%;
+}
+
+.navbar-brand {
+    margin: auto;
+    margin-right: 80px;
 }

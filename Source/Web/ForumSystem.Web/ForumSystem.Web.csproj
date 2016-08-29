@@ -495,6 +495,7 @@
     <Content Include="Views\Answer\Create.cshtml" />
     <None Include="Views\Answer\Delete.cshtml" />
     <None Include="Views\Answer\Rate.cshtml" />
+    <Content Include="Views\Answer\RateDown.cshtml" />
     <None Include="Views\Answer\ViewAll.cshtml" />
     <Content Include="Views\Questions\Index.cshtml" />
     <None Include="Views\Questions\Delete.cshtml" />
@@ -502,7 +503,6 @@
     <None Include="Views\Questions\Music.cshtml" />
     <None Include="Views\Questions\Programming.cshtml" />
     <None Include="Views\Questions\Sport.cshtml" />
-    <None Include="Views\Questions\ViewReadMore.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

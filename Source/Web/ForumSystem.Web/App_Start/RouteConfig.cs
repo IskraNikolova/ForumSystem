@@ -13,7 +13,7 @@
           routes.MapRoute(
              name: "View question",
              url: "Questions/ViewReadMore/{id}",
-             defaults: new { controller = "Questions", action = "ViewReadMore", id = UrlParameter.Optional }
+             defaults: new { controller = "Answer", action = "ViewAll", id = UrlParameter.Optional }
              );
 
             routes.MapRoute(
