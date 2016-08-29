@@ -6,7 +6,8 @@
             <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
             @Model.Title
         </h3>
-        <i>by @Model.Author.FullName (Total points: @Model.Author.Points)</i>
+        
+        <i>by @Model.Author.FullName (Total points: @Model.Author.Points) PUBLISHED: @Model.CreatedOn</i>
         </div>
         <div class="panel-body">
             <p>@Html.Raw(Model.Content)</p>

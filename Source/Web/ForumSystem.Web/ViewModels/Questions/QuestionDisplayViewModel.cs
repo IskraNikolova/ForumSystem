@@ -1,5 +1,6 @@
 ﻿namespace ForumSystem.Web.ViewModels.Questions
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using ForumSystem.Models;
@@ -27,5 +28,8 @@
 
         [Display(Name = "Author")]
         public ApplicationUser Author { get; set; }
+
+        [Display(Name = "CreatedOn")]
+        public DateTime CreatedOn { get; set; }
     }
 }
