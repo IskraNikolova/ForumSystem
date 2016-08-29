@@ -14,10 +14,6 @@
             @Html.ActionLink("IWannaKnow", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li>
-                    <img src="@Url.Action("UserPhotos", "Home" )" height="48" width="48" />
-
-                </li> 
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 <li>@Html.ActionLink("Ask question", "Ask", "Questions")</li>
                 <li>@Html.ActionLink("Music", "Music", "Questions")</li>
@@ -25,6 +21,10 @@
                 <li>@Html.ActionLink("Fun", "Fun", "Questions")</li>
                 <li>@Html.ActionLink("Programming", "Programming", "Questions")</li>
                 <li class="forum">@Html.ActionLink("Forum", "Index", "Questions")</li>
+                <li>
+                    <img src="@Url.Action("UserPhotos", "Home" )" height="48" width="48" />
+
+                </li> 
             </ul>
             @Html.Partial("_LoginPartial")
         </div>
