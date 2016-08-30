@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ForumSystem.Web.Models
 {
+    using ForumSystem.Models;
+    using Infrastructure.Mapping;
+
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
@@ -61,8 +64,26 @@ namespace ForumSystem.Web.Models
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
     }
+    public class DisplayViewModel : IMapFrom<ApplicationUser>
+    {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
 
-    public class RegisterViewModel
+        [Display(Name = "UserPhoto")]
+        public byte[] UserPhoto { get; set; }
+
+        [Display(Name = "FullName")]
+        public string FullName { get; set; }
+
+        [Display(Name = "UserName")]
+        public string UserName { get; set; }
+
+        [Display(Name = "Points")]
+        public int Points { get; set; }
+    }
+    public class RegisterViewModel 
     {
         [Required]
         [EmailAddress]
@@ -85,6 +106,9 @@ namespace ForumSystem.Web.Models
 
         [Display(Name = "FullName")]
         public string FullName { get; set; }
+
+        [Display(Name = "UserName")]
+        public string UserName { get; set; }
     }
 
     public class ResetPasswordViewModel

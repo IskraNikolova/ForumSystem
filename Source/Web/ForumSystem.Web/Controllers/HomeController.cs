@@ -13,6 +13,7 @@
     using ForumSystem.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
+    using Models;
     using ViewModels.Home;
 
     public class HomeController : Controller
@@ -74,6 +75,21 @@
 
                 return this.File(imageData, "image/png");
             }
+        }
+
+
+
+       //GET: /Home/DisplayProfilePage
+       [AllowAnonymous]
+        public ActionResult DisplayProfilePage()
+        {
+            var user =
+                this.users.All()
+                    .Project()
+                    .To<DisplayViewModel>()
+                    .FirstOrDefault(u => u.UserName == this.User.Identity.Name);
+
+            return this.View(user);
         }
     }
 }

@@ -13,6 +13,8 @@ using ForumSystem.Web.Models;
 namespace ForumSystem.Web.Controllers
 {
     using System.IO;
+    using AutoMapper.QueryableExtensions;
+    using Data.Common.Repository;
     using ForumSystem.Models;
     using Infrastructure.Mapping;
 
@@ -26,21 +28,24 @@ namespace ForumSystem.Web.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(
+            ApplicationUserManager userManager, 
+            ApplicationSignInManager signInManager)
         {
-            UserManager = userManager;
-            SignInManager = signInManager;
+            this.UserManager = userManager;
+            this.SignInManager = signInManager;
         }
 
         public ApplicationSignInManager SignInManager
         {
             get
             {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+                return this._signInManager ?? this.HttpContext.GetOwinContext()
+                    .Get<ApplicationSignInManager>();
             }
             private set 
-            { 
-                _signInManager = value; 
+            {
+                this._signInManager = value; 
             }
         }
 
@@ -48,11 +53,12 @@ namespace ForumSystem.Web.Controllers
         {
             get
             {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return this._userManager ?? this.HttpContext.GetOwinContext()
+                    .GetUserManager<ApplicationUserManager>();
             }
             private set
             {
-                _userManager = value;
+                this._userManager = value;
             }
         }
 
@@ -62,7 +68,7 @@ namespace ForumSystem.Web.Controllers
         public ActionResult Login(string returnUrl)
         {
             this.ViewBag.ReturnUrl = returnUrl;
-            return View();
+            return this.View();
         }
 
         //
@@ -87,7 +93,7 @@ namespace ForumSystem.Web.Controllers
                 case SignInStatus.LockedOut:
                     return this.View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    return this.RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
                     this.ModelState.AddModelError("", "Invalid login attempt.");
@@ -153,9 +159,8 @@ namespace ForumSystem.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register([Bind(Exclude = "UserPhoto")]RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-
                 // To convert the user uploaded Photo as Byte Array before save to DB 
                 byte[] imageData = null;
                 if (this.Request.Files.Count > 0)
@@ -343,7 +348,7 @@ namespace ForumSystem.Web.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
+            var loginInfo = await this.AuthenticationManager.GetExternalLoginInfoAsync();
             if (loginInfo == null)
             {
                 return this.RedirectToAction("Login");
@@ -489,7 +494,9 @@ namespace ForumSystem.Web.Controllers
             }
 
             public string LoginProvider { get; set; }
+
             public string RedirectUri { get; set; }
+
             public string UserId { get; set; }
 
             public override void ExecuteResult(ControllerContext context)
@@ -497,9 +504,9 @@ namespace ForumSystem.Web.Controllers
                 var properties = new AuthenticationProperties { RedirectUri = this.RedirectUri };
                 if (this.UserId != null)
                 {
-                    properties.Dictionary[XsrfKey] = UserId;
+                    properties.Dictionary[XsrfKey] = this.UserId;
                 }
-                context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
+                context.HttpContext.GetOwinContext().Authentication.Challenge(properties, this.LoginProvider);
             }
         }
         #endregion

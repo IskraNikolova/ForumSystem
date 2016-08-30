@@ -1,15 +1,9 @@
-﻿
-@using System.Xml.Schema
-@using ForumSystem.Web.Logic
+﻿@using ForumSystem.Web.Logic
 @model Tuple< IList<ForumSystem.Models.ApplicationUser>, IList<ForumSystem.Web.ViewModels.Home.IndexBlogPostViewModel>> 
+
 @{
     ViewBag.Title = "Home Page";
 }
-<h1>
-    Shanu Profile Image ..
-
-    <img class ="userPhoto"src="@Url.Action("UserPhotos", "Home" )" style="" />
-</h1>
 
 <h1><span class="glyphicon glyphicon glyphicon-star-empty" aria-hidden="true">THE LAST POST</span></h1>
 @{ var firstUsers = GetUserWithTheBestResult.RatingByPoints(Model.Item1.ToList()); }
