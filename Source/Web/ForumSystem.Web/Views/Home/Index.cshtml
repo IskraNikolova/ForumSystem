@@ -1,33 +1,47 @@
 ﻿@using ForumSystem.Web.Logic
-@model Tuple< IList<ForumSystem.Models.ApplicationUser>, IList<ForumSystem.Web.ViewModels.Home.IndexBlogPostViewModel>> 
+@model Tuple<IList<ForumSystem.Models.ApplicationUser>, IList<ForumSystem.Web.ViewModels.Home.IndexBlogPostViewModel>>
 
 @{
     ViewBag.Title = "Home Page";
 }
+<body>
+    <div class="panel-body">
+        <div class="col-md-9">
+            <h1><span class="glyphicon glyphicon-pencil" aria-hidden="true">THE LAST POST</span></h1>
+            <hr />
+            @{ var firstPosts = GetFirstPosts.GetFirstIndexPosts(Model.Item2.ToList()); }
+            @foreach (var post in firstPosts)
+            {
+                <h3>
+                    <span class="glyphicon glyphicon-question-sign" aria-hidden="true">
+                        @post.Title
+                    </span>
+                </h3>
+                if (post.Author != null)
+                {
+                    <p>
+                        <i>by @post.Author.FullName ( <i>Tottal points:</i> @post.Author.Points ) PUBLISHED @post.CreatedOn </i>
+                    </p>
+                }
+                <hr />
+                @Html.Raw(ТextТransformer.CutText(post.Content))
+                <i>@Html.ActionLink("read more...", "ViewReadMore", "Questions", new { id = post.Id }, null)</i>
+                <hr />
+            }
 
-<h1><span class="glyphicon glyphicon glyphicon-star-empty" aria-hidden="true">THE LAST POST</span></h1>
-@{ var firstUsers = GetUserWithTheBestResult.RatingByPoints(Model.Item1.ToList()); }
-@foreach (var user in firstUsers)
-{
-    <p>@user.FullName Total Points: @user.Points </p>
-}
-
-@{ var firstPosts = GetFirstPosts.GetFirstIndexPosts(Model.Item2.ToList()); }
-@foreach (var post in firstPosts)
-{
-    <h3>
-        <span class="glyphicon glyphicon-question-sign" aria-hidden="true">
-            @post.Title
-        </span>
-    </h3>
-    if (post.Author != null)
-    {
-        <p>
-            <i>by @post.Author.FullName ( <i>Tottal points:</i> @post.Author.Points ) PUBLISHED @post.CreatedOn </i>
-        </p>
-    }
-    <hr />
-    @Html.Raw(ТextТransformer.CutText(post.Content))
-    <i>@Html.ActionLink("read more...", "ViewReadMore", "Questions", new { id = post.Id }, null)</i>
-    <hr/>
-}
+        </div>
+        <div class="col-md-3">
+            <h2><span class="glyphicon glyphicon glyphicon-star-empty" aria-hidden="true">RATING</span></h2>
+            @{ var firstUsers = GetUserWithTheBestResult.RatingByPoints(Model.Item1.ToList()); }
+            <ul class="list-group">
+                @foreach (var user in firstUsers)
+                {
+                    <li class="list-group-item">
+                        <span class="badge">@user.Points</span>
+                        @user.FullName Total
+                    </li>
+                }
+            </ul>       
+        </div>
+    </div>
+</body>

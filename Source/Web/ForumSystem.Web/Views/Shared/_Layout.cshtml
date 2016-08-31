@@ -30,16 +30,18 @@
 </nav>
 <div class="row">
     <aside class="col-md-3">
-        <ul class="nav nav-pills nav-stacked">
-            <li >@Html.ActionLink("Home", "Index", "Home")</li>
-            <li>@Html.ActionLink("Ask question", "Ask", "Questions")</li>
-            <li>@Html.ActionLink("Music", "Music", "Questions")</li>
-            <li>@Html.ActionLink("Sport", "Sport", "Questions")</li>
-            <li>@Html.ActionLink("Fun", "Fun", "Questions")</li>
-            <li>@Html.ActionLink("Programming", "Programming", "Questions")</li>
-            <li class="forum">@Html.ActionLink("Forum", "Index", "Questions")</li>
-        </ul>
-    </aside>
+        <div class="panel panel-success">
+            <ul class="nav nav-pills nav-stacked">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Ask question", "Ask", "Questions")</li>
+                <li>@Html.ActionLink("Music", "Music", "Questions")</li>
+                <li>@Html.ActionLink("Sport", "Sport", "Questions")</li>
+                <li>@Html.ActionLink("Fun", "Fun", "Questions")</li>
+                <li>@Html.ActionLink("Programming", "Programming", "Questions")</li>
+                <li class="forum">@Html.ActionLink("Forum", "Index", "Questions")</li>
+            </ul>
+        </div>
+</aside>
     <section class="col-md-9">
         <article class="panel panel-success">
             @RenderBody()

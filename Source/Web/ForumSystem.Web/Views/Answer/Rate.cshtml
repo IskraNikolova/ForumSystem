@@ -11,7 +11,7 @@
             @Html.ValidationSummary("", new { @class = "text-danger" })
             <div class="form-actions warning">
                 <input type="submit" value="Rate" class="btn btn-info" /> |
-                @Html.ActionLink("Back to List", "ViewAll", new { id = Model.PostId })
+                @Html.ActionLink("Back to List", "ViewAnswersOfPost", new { id = Model.PostId })
             </div>
         }
     </div>
