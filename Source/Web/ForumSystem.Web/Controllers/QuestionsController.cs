@@ -38,6 +38,7 @@
         {
             var allPosts = this.posts.All()
                                .Include(p => p.Author)
+                               .OrderByDescending(p => p.CreatedOn)
                                .Project()
                                .To<IndexBlogPostViewModel>();
 

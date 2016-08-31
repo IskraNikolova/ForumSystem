@@ -61,7 +61,7 @@
                 string userId = this.User.Identity.GetUserId();
                 var user = this.users.All().FirstOrDefault(u => u.Id == userId);
 
-                if (userId == null || user.UserPhoto == null)
+                if (userId == null || user.UserPhoto.Length == 0 || user.UserPhoto == null)
                 {
                     return this.ImageLoad(@"~/Images/noImg.png");
                 }
@@ -77,8 +77,23 @@
             }
         }
 
-       //GET: /Home/DisplayProfilePage
-       [AllowAnonymous]
+        public FileContentResult TakeUserPhotos(string id)
+        {
+            var user = this.users.All().FirstOrDefault(u => u.Id == id);
+
+            if (id == null || user.UserPhoto.Length == 0 || user.UserPhoto == null)
+            {
+                return this.ImageLoad(@"~/Images/noImg.png");
+            }
+
+            var bdUsers = this.HttpContext.GetOwinContext().Get<ApplicationDbContext>();
+            var userImage = bdUsers.Users.FirstOrDefault(x => x.Id == id);
+
+            return new FileContentResult(userImage.UserPhoto, "image/jpeg");
+        }
+
+        //GET: /Home/DisplayProfilePage
+        [AllowAnonymous]
         public ActionResult DisplayProfilePage()
         {
             var user =
