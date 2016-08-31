@@ -5,24 +5,32 @@
     <div class="panel-body">
         <span class="glyphicon glyphicon-pencil" aria-hidden="true">
             @if (answer.Author != null)
-                {
+            {
                 <p>@answer.Author.FullName  PUBLISHED @answer.CreatedOn</p>
             }
+            else
+            {
+                <p>(Anonymous)  PUBLISHED @answer.CreatedOn</p>
+            }
         </span>
+        <hr />
         @Html.Raw(answer.Content)
     </div>
-        <div>
+    <div>
+        @if (answer.Author != null)
+        {
             <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="bottom" title="Tooltip on left">
-                @Html.ActionLink("Delete", "Delete", "Answer", new {id = answer.Id}, null)
-            </button>          
+                @Html.ActionLink("Delete", "Delete", "Answer", new { id = answer.Id }, null)
+            </button>
             <button type="button" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 
+                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                 @Html.ActionLink(answer.RatingUp.ToString(), "Rate", "Answer", new { id = answer.Id }, null)
             </button>
             <button type="button" class="btn btn-default btn-sm">
                 <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
                 @Html.ActionLink(answer.RatingDown.ToString(), "RateDown", "Answer", new { id = answer.Id }, null)
             </button>
-        </div>
-        <hr />
+        }
+    </div>
+    <hr />
 }

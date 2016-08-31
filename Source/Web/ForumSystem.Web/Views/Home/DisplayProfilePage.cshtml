@@ -46,32 +46,8 @@
             </span>
             </div>
             <div class="panel-body">
-                <p>
-                    <b><i>Comments:</i></b>
-                </p>
-                <hr/>
-                <hr/>
-                @foreach (var answer in post.Answers)
-                {
-                    <div class="panel-body">
-                        <p>@Html.Raw(answer.Content)</p>
-                        <p>
-                            @*<i>by @answer.Author.FullName PUBLISHED (@answer.CreatedOn)</i>*@
-                        </p>
-                        <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="bottom" title="Tooltip on left">
-                            @Html.ActionLink("Delete", "Delete", "Answer", new {id = answer.Id}, null)
-                        </button>
-                        <button type="button" class="btn btn-default btn-sm">
-                            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                            @Html.ActionLink(answer.RatingUp.ToString(), "Rate", "Answer", new {id = answer.Id}, null)
-                        </button>
-                        <button type="button" class="btn btn-default btn-sm">
-                            <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-                            @Html.ActionLink(answer.RatingDown.ToString(), "RateDown", "Answer", new {id = answer.Id}, null)
-                        </button>
-                    </div>
-                    <hr/>
-                }
+                 @Html.ActionLink("View Comments", "ViewAnswersOfPost", "Answer", new { id = post.Id }, null)
+                <hr/>           
             </div>
         }
     </div>
@@ -79,4 +55,5 @@
 else
 {
     <p>You can make your profile...</p>
+    @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
 }

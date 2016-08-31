@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Net;
     using System.Web.Mvc;
+    using System.Web.Security;
     using AutoMapper.QueryableExtensions;
     using Data.Common.Repository;
     using ForumSystem.Models;
@@ -59,7 +60,7 @@
             var user = this.users.All().
                 FirstOrDefault(u => u.UserName == this.User.Identity.Name);
 
-            Answer answer = this.answers               
+            Answer answer = this.answers
                 .All()
                 .Include(a => a.Author)
                 .FirstOrDefault(a => a.Id == id);
@@ -73,8 +74,8 @@
             {
                 answer.RatingUp++;
                 answer.RatingPoint++;
-                answer.RatingUpUsers += user.UserName;              
-                if (answer.RatingPoint%10 == 0)
+                answer.RatingUpUsers += user.UserName;
+                if (answer.RatingPoint % 10 == 0)
                 {
                     answer.Author.Points += 1000;
                 }
@@ -84,7 +85,7 @@
 
 
             this.answers.SaveChanges();
-            return this.RedirectToAction("ViewReadMore","Questions", new {id = answer.PostId});
+            return this.RedirectToAction("ViewReadMore", "Questions", new { id = answer.PostId });
         }
 
         [Authorize]
@@ -139,7 +140,6 @@
         }
 
         [HttpGet]
-        [Authorize]
         public ActionResult Create()
         {
             var model = new AnswerInputModel();
@@ -148,7 +148,6 @@
         }
 
         [HttpPost]
-        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Create(int id, AnswerInputModel input)
         {
@@ -195,7 +194,7 @@
             return this.View(answer);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Administrators")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -206,6 +205,7 @@
 
             this.answers.Delete(answer);
             this.answers.SaveChanges();
+
             return this.RedirectToAction("ViewReadMore", "Questions", new { id = answer.PostId });
         }
 

@@ -8,7 +8,6 @@
 </head>
 <body>
 <header>
-
     <span class="titleHeader">IWannaKnow</span>
 </header>
     <nav class="navbar navbar-static-top">
@@ -21,9 +20,7 @@
                     <li>@Html.ActionLink("Sport", "Sport", "Questions")</li>
                     <li>@Html.ActionLink("Fun", "Fun", "Questions")</li>
                     <li>@Html.ActionLink("Programming", "Programming", "Questions")</li>
-                    <li class="forum">@Html.ActionLink("Forum", "Index", "Questions")</li>
-                    <li class="profile">@Html.ActionLink("Profile", "DisplayProfilePage", "Home")</li>
-                    <li><img src="@Url.Action("UserPhotos", "Home" )" height="48" width="48" /></li>
+                    <li class="forum">@Html.ActionLink("All Categories", "Index", "Questions")</li>                 
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -42,7 +39,7 @@
                     <li>@Html.ActionLink("Sport", "Sport", "Questions")</li>
                     <li>@Html.ActionLink("Fun", "Fun", "Questions")</li>
                     <li>@Html.ActionLink("Programming", "Programming", "Questions")</li>
-                    <li class="forum">@Html.ActionLink("Forum", "Index", "Questions")</li>
+                    <li class="forum">@Html.ActionLink("All Categories", "Index", "Questions")</li>
                 </ul>
             </div>
         </aside>

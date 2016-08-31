@@ -6,7 +6,7 @@
 
     public static class GetUserWithTheBestResult
     {
-        private const int DefaultLengthForRating = 10;
+        private const int DefaultLengthForRating = 7;
         public static IList<ApplicationUser> RatingByPoints(IList<ApplicationUser> allUser)
         {
             var result = allUser

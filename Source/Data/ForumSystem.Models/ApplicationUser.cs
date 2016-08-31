@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Threading.Tasks;
     using System.Security.Claims;
@@ -24,6 +25,7 @@
             return userIdentity;
         }
 
+        [Required]
         public string FullName { get; set; }
 
         public int Points { get; set; }

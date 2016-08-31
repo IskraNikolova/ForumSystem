@@ -6,7 +6,7 @@
 }
 <body>
     <div class="panel-body">
-        <div class="col-md-9">
+        <div class="col-md-10">
             <h1><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></h1>
             <hr />
             @{ var firstPosts = GetFirstPosts.GetFirstIndexPosts(Model.Item2.ToList()); }
@@ -33,7 +33,7 @@
                 }
             </ul>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div><img src="@Url.Action("ImageLoad", "Home", new {path = @"~/Images/know.jpg" })" height="120" width="160"/></div>
             <h2><span class="glyphicon glyphicon glyphicon-star-empty" aria-hidden="true">RATING</span></h2>
             @{ var firstUsers = GetUserWithTheBestResult.RatingByPoints(Model.Item1.ToList()); }

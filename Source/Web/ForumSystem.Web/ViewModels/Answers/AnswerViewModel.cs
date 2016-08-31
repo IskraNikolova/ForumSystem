@@ -38,6 +38,7 @@
         [Display(Name = "Author")]
         public ApplicationUser Author { get; set; }
 
+        [Display(Name = "CreatedOn")]
         public DateTime CreatedOn { get; set; }
     }
 }
