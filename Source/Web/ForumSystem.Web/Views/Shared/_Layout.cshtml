@@ -8,52 +8,56 @@
 </head>
 <body>
 <header>
-    <span class="titleHeader"><h1>IWannaKnow</h1></span> 
+
+    <span class="titleHeader">IWannaKnow</span>
 </header>
-<nav class="navbar navbar-static-top">
-    <div class="container">            
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("Ask question", "Ask", "Questions")</li>
-                <li>@Html.ActionLink("Music", "Music", "Questions")</li>
-                <li>@Html.ActionLink("Sport", "Sport", "Questions")</li>
-                <li>@Html.ActionLink("Fun", "Fun", "Questions")</li>
-                <li>@Html.ActionLink("Programming", "Programming", "Questions")</li>
-                <li class="forum">@Html.ActionLink("Forum", "Index", "Questions")</li>
-                <li class ="profile">@Html.ActionLink("Profile", "DisplayProfilePage", "Home")</li>
-                <li><img src="@Url.Action("UserPhotos", "Home" )" height="48" width="48" /></li> 
-            </ul>
-            @Html.Partial("_LoginPartial")
+    <nav class="navbar navbar-static-top">
+        <div class="container">
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Ask question", "Ask", "Questions")</li>
+                    <li>@Html.ActionLink("Music", "Music", "Questions")</li>
+                    <li>@Html.ActionLink("Sport", "Sport", "Questions")</li>
+                    <li>@Html.ActionLink("Fun", "Fun", "Questions")</li>
+                    <li>@Html.ActionLink("Programming", "Programming", "Questions")</li>
+                    <li class="forum">@Html.ActionLink("Forum", "Index", "Questions")</li>
+                    <li class="profile">@Html.ActionLink("Profile", "DisplayProfilePage", "Home")</li>
+                    <li><img src="@Url.Action("UserPhotos", "Home" )" height="48" width="48" /></li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
         </div>
+    </nav>
+    <div class="row">
+        <aside class="col-md-3">
+            <div class="panel panel-success">
+                <img src="@Url.Action("ImageLoad", "Home", new {path = @"~/Images/img.jpg" })" height="300" width="343" />
+            </div>
+            <div class="panel panel-success">
+                <ul class="nav nav-pills nav-stacked">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Ask question", "Ask", "Questions")</li>
+                    <li>@Html.ActionLink("Music", "Music", "Questions")</li>
+                    <li>@Html.ActionLink("Sport", "Sport", "Questions")</li>
+                    <li>@Html.ActionLink("Fun", "Fun", "Questions")</li>
+                    <li>@Html.ActionLink("Programming", "Programming", "Questions")</li>
+                    <li class="forum">@Html.ActionLink("Forum", "Index", "Questions")</li>
+                </ul>
+            </div>
+        </aside>
+        <section class="col-md-9">
+            <article class="panel panel-success">
+                @RenderBody()
+            </article>
+        </section>
+        <hr />
     </div>
-</nav>
-<div class="row">
-    <aside class="col-md-3">
-        <div class="panel panel-success">
-            <ul class="nav nav-pills nav-stacked">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("Ask question", "Ask", "Questions")</li>
-                <li>@Html.ActionLink("Music", "Music", "Questions")</li>
-                <li>@Html.ActionLink("Sport", "Sport", "Questions")</li>
-                <li>@Html.ActionLink("Fun", "Fun", "Questions")</li>
-                <li>@Html.ActionLink("Programming", "Programming", "Questions")</li>
-                <li class="forum">@Html.ActionLink("Forum", "Index", "Questions")</li>
-            </ul>
-        </div>
-</aside>
-    <section class="col-md-9">
-        <article class="panel panel-success">
-            @RenderBody()
-        </article>
-    </section>
-    <hr/>
-</div>
-<footer>
-    <p>&copy; @DateTime.Now.Year - by AirIskra . All Rights Reserved.</p>
-</footer>
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", required: false)
+    <footer>
+        <p>&copy; @DateTime.Now.Year - by AirIskra . All Rights Reserved.</p>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

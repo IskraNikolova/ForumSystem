@@ -41,23 +41,29 @@
             return this.View(modelForIndexPage);
         }
 
+        public FileContentResult ImageLoad(string path)
+        {
+            string fileName = this.HttpContext.Server.MapPath(path);
+            byte[] imageData = null;
+            FileInfo fileInfo = new FileInfo(fileName);
+            long imageFileLength = fileInfo.Length;
+            FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+            BinaryReader br = new BinaryReader(fs);
+            imageData = br.ReadBytes((int)imageFileLength);
+
+            return this.File(imageData, "image/png");
+        }
+       
         public FileContentResult UserPhotos()
         {
             if (this.User.Identity.IsAuthenticated)
             {
                 string userId = this.User.Identity.GetUserId();
+                var user = this.users.All().FirstOrDefault(u => u.Id == userId);
 
-                if (userId == null)
+                if (userId == null || user.UserPhoto == null)
                 {
-                    string fileName = this.HttpContext.Server.MapPath(@"~/Images/noImg.png");
-                    byte[] imageData = null;
-                    FileInfo fileInfo = new FileInfo(fileName);
-                    long imageFileLength = fileInfo.Length;
-                    FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                    BinaryReader br = new BinaryReader(fs);
-                    imageData = br.ReadBytes((int) imageFileLength);
-
-                    return this.File(imageData, "image/png");
+                    return this.ImageLoad(@"~/Images/noImg.png");
                 }
 
                 var bdUsers = this.HttpContext.GetOwinContext().Get<ApplicationDbContext>();
@@ -67,20 +73,9 @@
             }
             else
             {
-                //todo method
-                string fileName = this.HttpContext.Server.MapPath(@"~/Images/noImg.png");
-                byte[] imageData = null;
-                FileInfo fileInfo = new FileInfo(fileName);
-                long imageFileLength = fileInfo.Length;
-                FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                BinaryReader br = new BinaryReader(fs);
-                imageData = br.ReadBytes((int)imageFileLength);
-
-                return this.File(imageData, "image/png");
+                return this.ImageLoad(@"~/Images/noImg.png");
             }
         }
-
-
 
        //GET: /Home/DisplayProfilePage
        [AllowAnonymous]
