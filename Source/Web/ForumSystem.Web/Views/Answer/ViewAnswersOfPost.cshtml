@@ -12,18 +12,17 @@
         @Html.Raw(answer.Content)
     </div>
         <div>
-            <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Tooltip on left">
-                @Html.ActionLink("Delete", "Delete", "Answer", new { id = answer.Id }, null)
+            <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="bottom" title="Tooltip on left">
+                @Html.ActionLink("Delete", "Delete", "Answer", new {id = answer.Id}, null)
+            </button>          
+            <button type="button" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 
+                @Html.ActionLink(answer.RatingUp.ToString(), "Rate", "Answer", new { id = answer.Id }, null)
             </button>
-
-            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-            @Html.ActionLink(" Rate up", "Rate", "Answer", new { id = answer.Id }, null)
-            @answer.RatingUp
-
-
-            @Html.ActionLink(" Rate down", "RateDown", "Answer", new { id = answer.Id }, null)
-            <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-            @answer.RatingDown
+            <button type="button" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                @Html.ActionLink(answer.RatingDown.ToString(), "RateDown", "Answer", new { id = answer.Id }, null)
+            </button>
         </div>
         <hr />
 }

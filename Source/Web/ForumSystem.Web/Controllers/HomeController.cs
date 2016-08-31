@@ -95,6 +95,7 @@
            var displayPosts = this.posts
                                   .All()
                                   .Where(p => p.Author.UserName == this.User.Identity.Name)
+                                  .OrderByDescending(p => p.CreatedOn)
                                   .Project()
                                   .To<QuestionDisplayViewModel>()
                                   .ToList();

@@ -1,69 +1,81 @@
 ﻿@using ForumSystem.Web.Logic
 @model Tuple<ForumSystem.Web.Models.DisplayViewModel, IList<ForumSystem.Web.ViewModels.Questions.QuestionDisplayViewModel>>
-<div class="media-left">
-    <h1>
-        <img class="userPhoto" src="@Url.Action("UserPhotos", "Home")"/>
-    </h1>
+<div class="panel panel-default">
+    <div class="media-left">
+        <h1>
+            <img class="userPhoto" src="@Url.Action("UserPhotos", "Home")" />
+        </h1>
+    </div>
+    <div class="media-body">
+        @if (Model != null)
+        {
+            <div class="media-heading">
+                <h2>@Model.Item1.FullName</h2>
+            </div>
+            <p>(@Model.Item1.Email)</p>
+            <p>Points: @Model.Item1.Points</p>
+        }
+        else
+        {
+            <p>You can make your profile...</p>
+        }
+    </div>
 </div>
-<div class="media-body">
-    @if (Model != null)
+<div class="panel panel-default">
+    Asq new question.
+    <p><i>@Html.ActionLink("Write...", "Ask", "Questions")</i></p>
+</div>
+<div class="panel panel-default">
+    @foreach (var post in Model.Item2.ToList())
     {
-        <div class="media-heading"><h2>@Model.Item1.FullName</h2></div>
-                <p>(@Model.Item1.Email)</p>
-                <p>Points: @Model.Item1.Points</p>
-    }
-    else
-    {
-        <p>You can make your profile...</p>
+        <div class="panel-heading">
+            <p>
+                <img src="@Url.Action("UserPhotos", "Home")" height="28" width="28" />
+                <h4> @post.Author.FullName posted.</h4>
+            </p>
+            <p>
+                <i>@post.CreatedOn</i>
+            </p>
+            <span class="label label-success">@post.Tag.Name</span>
+            <h3>@post.Title</h3>
+            <p>
+                @Html.Raw(ТextТransformer.CutText(post.Content))
+                <i>@Html.ActionLink("read more...", "ViewReadMore", "Questions", new { id = post.Id }, null)</i>
+            </p>
+            <span class="label label-success">
+                @Html.ActionLink("Add Comment", "Create", "Answer", new { id = post.Id }, null)
+            </span>
+            <span class="label label-warning">
+                @Html.ActionLink("Delete", "Delete", "Questions", new { id = post.Id }, null)
+            </span>
+        </div>
+            <div class="panel-body">
+                <p>
+                    <b><i>Comments:</i></b>
+                </p>
+                <hr />
+                <hr />
+                @foreach (var answer in post.Answers)
+                {
+                    <div class="panel-body">
+                        <p>@Html.Raw(answer.Content)</p>
+                        <p>
+                            <i>by @answer.Author.FullName PUBLISHED (@answer.CreatedOn)</i>
+                        </p>
+                        <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="bottom" title="Tooltip on left">
+                            @Html.ActionLink("Delete", "Delete", "Answer", new { id = answer.Id }, null)
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                            @Html.ActionLink(answer.RatingUp.ToString(), "Rate", "Answer", new { id = answer.Id }, null)
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                            @Html.ActionLink(answer.RatingDown.ToString(), "RateDown", "Answer", new { id = answer.Id }, null)
+                        </button>
+                    </div>
+                    <hr />
+                }
+            </div>
     }
 </div>
-
-@foreach (var post in Model.Item2.ToList())
- {
-     <div class="panel panel-info">
-             <p>
-                 <img src="@Url.Action("UserPhotos", "Home")" height="48" width="48" />@post.Author.FullName posted.
-             </p>
-             <p>
-                 <i>@post.CreatedOn</i>
-             </p>
-             <span class="label label-success">@post.Tag.Name</span>
-             <h3>@post.Title</h3>
-             <p>
-                 @Html.Raw(ТextТransformer.CutText(post.Content))
-                 <i>@Html.ActionLink("read more...", "ViewReadMore", "Questions", new { id = post.Id }, null)</i>
-             </p>
-             <span class="label label-success">
-                 @Html.ActionLink("Add Comment", "Create", "Answer", new { id = post.Id }, null)
-             </span>
-             <span class="label label-warning">
-                 @Html.ActionLink("Delete", "Delete", "Questions", new { id = post.Id }, null)
-             </span>
-             <hr />
-             <p>
-                 <b><i>Comments:</i></b>
-             </p>
-
-         @foreach (var answer in post.Answers)
-         {
-         <p>@Html.Raw(answer.Content)</p>
-         <p>
-             <i>by @answer.Author.FullName PUBLISHED (@answer.CreatedOn)</i>
-         </p>
-         <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Tooltip on left">
-             @Html.ActionLink("Delete", "Delete", "Answer", new {id = answer.Id}, null)
-         </button>
-
-         <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-         @Html.ActionLink(" Rate up ", "Rate", "Answer", new {id = answer.Id}, null)
-         @answer.RatingUp
-
-
-         @Html.ActionLink(" | Rate down ", "RateDown", "Answer", new {id = answer.Id}, null)
-         <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-         @answer.RatingDown
-
-         }
-     </div>
-}
-
