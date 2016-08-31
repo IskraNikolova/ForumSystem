@@ -8,10 +8,10 @@
 </head>
 <body>
 <header>
+    <span class="titleHeader"><h1>IWannaKnow</h1></span> 
 </header>
 <nav class="navbar navbar-static-top">
-    <div class="container"> 
-            @Html.ActionLink("IWannaKnow", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
+    <div class="container">            
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
@@ -21,7 +21,7 @@
                 <li>@Html.ActionLink("Fun", "Fun", "Questions")</li>
                 <li>@Html.ActionLink("Programming", "Programming", "Questions")</li>
                 <li class="forum">@Html.ActionLink("Forum", "Index", "Questions")</li>
-                <li>@Html.ActionLink("Profile", "DisplayProfilePage", "Home")</li>
+                <li class ="profile">@Html.ActionLink("Profile", "DisplayProfilePage", "Home")</li>
                 <li><img src="@Url.Action("UserPhotos", "Home" )" height="48" width="48" /></li> 
             </ul>
             @Html.Partial("_LoginPartial")

@@ -15,6 +15,7 @@
     using Microsoft.AspNet.Identity.Owin;
     using Models;
     using ViewModels.Home;
+    using ViewModels.Questions;
 
     public class HomeController : Controller
     {
@@ -33,7 +34,9 @@
                     .Project().To<IndexBlogPostViewModel>()
                     .ToList();
 
-            var allUsers = this.users.All().ToList();
+            var allUsers = this.users.All()
+                .ToList();
+
             var modelForIndexPage = new Tuple<IList<ApplicationUser>, IList<IndexBlogPostViewModel>>(allUsers, allPosts);
             return this.View(modelForIndexPage);
         }
@@ -89,7 +92,17 @@
                     .To<DisplayViewModel>()
                     .FirstOrDefault(u => u.UserName == this.User.Identity.Name);
 
-            return this.View(user);
+           var displayPosts = this.posts
+                                  .All()
+                                  .Where(p => p.Author.UserName == this.User.Identity.Name)
+                                  .Project()
+                                  .To<QuestionDisplayViewModel>()
+                                  .ToList();
+
+            var modelForIndexPage = 
+                new Tuple<DisplayViewModel, IList<QuestionDisplayViewModel>>(user, displayPosts);
+
+            return this.View(modelForIndexPage);
         }
     }
 }
