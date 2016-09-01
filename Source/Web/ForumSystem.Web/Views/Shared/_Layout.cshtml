@@ -9,8 +9,7 @@
 <body>
 <nav class="navbar navbar-static-top">
     <a class="navbar-brand" href="@Url.Action("Index", "Home")"><span class="titleHeader">IWannaKnow</span></a>
-    <div class="container">
-        <div class="navbar-collapse collapse">
+    <div class="container">  
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 <li>@Html.ActionLink("Ask question", "Ask", "Questions")</li>
@@ -21,8 +20,7 @@
                 <li class="forum">@Html.ActionLink("All Categories", "Index", "Questions")</li>
             </ul>
             @Html.Partial("_LoginPartial")
-        </div>
-    </div>
+        </div>  
 </nav>
     <div class="row">
         <aside class="col-md-3">
