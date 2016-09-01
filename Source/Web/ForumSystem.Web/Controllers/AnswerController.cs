@@ -17,7 +17,6 @@
     {
         private readonly IDeletableEntityRepository<Answer> answers;
         private readonly IDeletableEntityRepository<ApplicationUser> users;
-
         private readonly ISanitizer sanitizer;
 
         public AnswerController(IDeletableEntityRepository<Answer> answers,
@@ -25,8 +24,7 @@
             ISanitizer sanitizer)
         {
             this.answers = answers;
-            this.users = users;
-     
+            this.users = users;    
             this.sanitizer = sanitizer;
         }
 

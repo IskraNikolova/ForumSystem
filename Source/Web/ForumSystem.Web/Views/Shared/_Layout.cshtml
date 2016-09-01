@@ -7,25 +7,23 @@
     @Styles.Render("~/Content/css")
 </head>
 <body>
-<header>
-    <span class="titleHeader">IWannaKnow</span>
-</header>
-    <nav class="navbar navbar-static-top">
-        <div class="container">
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Ask question", "Ask", "Questions")</li>
-                    <li>@Html.ActionLink("Entertainment & Music", "Music", "Questions")</li>
-                    <li>@Html.ActionLink("Sport", "Sport", "Questions")</li>
-                    <li>@Html.ActionLink("Fun", "Fun", "Questions")</li>
-                    <li>@Html.ActionLink("Programming", "Programming", "Questions")</li>
-                    <li class="forum">@Html.ActionLink("All Categories", "Index", "Questions")</li>                 
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+<nav class="navbar navbar-static-top">
+    <a class="navbar-brand" href="@Url.Action("Index", "Home")"><span class="titleHeader">IWannaKnow</span></a>
+    <div class="container">
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Ask question", "Ask", "Questions")</li>
+                <li>@Html.ActionLink("Entertainment & Music", "Music", "Questions")</li>
+                <li>@Html.ActionLink("Sport", "Sport", "Questions")</li>
+                <li>@Html.ActionLink("Fun", "Fun", "Questions")</li>
+                <li>@Html.ActionLink("Programming", "Programming", "Questions")</li>
+                <li class="forum">@Html.ActionLink("All Categories", "Index", "Questions")</li>
+            </ul>
+            @Html.Partial("_LoginPartial")
         </div>
-    </nav>
+    </div>
+</nav>
     <div class="row">
         <aside class="col-md-3">
             <div class="panel panel-success">
