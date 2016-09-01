@@ -142,14 +142,14 @@
         [HttpGet]
         public ActionResult Create()
         {
-            var model = new AnswerInputModel();
+            var model = new CreateAnswerInputModel();
 
             return this.View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int id, AnswerInputModel input)
+        public ActionResult Create(int id,CreateAnswerInputModel input)
         {
             var answerAuthor = this.users
                 .All()

@@ -31,13 +31,13 @@
         public ActionResult Index()
         {
             var allPosts = this.posts.All()
-                    .Project().To<IndexBlogPostViewModel>()
+                    .Project().To<IndexPostViewModel>()
                     .ToList();
 
             var allUsers = this.users.All()
                 .ToList();
 
-            var modelForIndexPage = new Tuple<IList<ApplicationUser>, IList<IndexBlogPostViewModel>>(allUsers, allPosts);
+            var modelForIndexPage = new Tuple<IList<ApplicationUser>, IList<IndexPostViewModel>>(allUsers, allPosts);
             return this.View(modelForIndexPage);
         }
 
@@ -61,7 +61,7 @@
                 string userId = this.User.Identity.GetUserId();
                 var user = this.users.All().FirstOrDefault(u => u.Id == userId);
 
-                if (userId == null || user.UserPhoto.Length == 0 || user.UserPhoto == null)
+                if (userId == null ||  user.UserPhoto == null || user.UserPhoto.Length == 0)
                 {
                     return this.ImageLoad(@"~/Images/noImg.png");
                 }
@@ -81,7 +81,7 @@
         {
             var user = this.users.All().FirstOrDefault(u => u.Id == id);
 
-            if (id == null || user.UserPhoto.Length == 0 || user.UserPhoto == null)
+            if (id == null || user.UserPhoto == null || user.UserPhoto.Length == 0)
             {
                 return this.ImageLoad(@"~/Images/noImg.png");
             }

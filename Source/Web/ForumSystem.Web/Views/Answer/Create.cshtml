@@ -1,7 +1,7 @@
-﻿@model ForumSystem.Web.InputModels.Answers.AnswerInputModel
+﻿@model ForumSystem.Web.InputModels.Answers.CreateAnswerInputModel
 
 @using (Html.BeginForm("Create", "Answer", FormMethod.Post))
-            {
+ {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div>

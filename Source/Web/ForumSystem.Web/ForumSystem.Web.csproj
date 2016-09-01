@@ -195,7 +195,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnswerController.cs" />
-    <Compile Include="InputModels\Answers\AnswerInputModel.cs" />
     <Compile Include="InputModels\Question\AskInputModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -211,7 +210,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Answers\AnswerViewModel.cs" />
-    <Compile Include="ViewModels\Home\IndexBlogPostViewModel.cs" />
+    <Compile Include="InputModels\Answers\CreateAnswerInputModel.cs" />
+    <Compile Include="ViewModels\Home\IndexPostViewModel.cs" />
+    <Compile Include="ViewModels\Questions\AllCategoriesViewModel.cs" />
+    <Compile Include="ViewModels\Questions\FunPostViewModel.cs" />
+    <Compile Include="ViewModels\Questions\MusicPostViewModel.cs" />
+    <Compile Include="ViewModels\Questions\ProgrammingPostViewModel.cs" />
+    <Compile Include="ViewModels\Questions\SportPostViewModel.cs" />
     <Compile Include="ViewModels\Questions\QuestionDisplayViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

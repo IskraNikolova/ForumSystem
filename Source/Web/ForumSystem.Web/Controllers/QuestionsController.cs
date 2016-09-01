@@ -37,10 +37,10 @@
         public ActionResult Index()
         {
             var allPosts = this.posts.All()
-                               .Include(p => p.Author)
-                               .OrderByDescending(p => p.CreatedOn)
-                               .Project()
-                               .To<IndexBlogPostViewModel>();
+                .Include(p => p.Author)
+                .OrderByDescending(p => p.CreatedOn)
+                .Project()
+                .To<AllCategoriesViewModel>();
 
             return this.View(allPosts);
         }
@@ -165,8 +165,8 @@
         public ActionResult Music()
         {
             var allPosts = this.posts.All()
-                               .Where(p => p.Tag.Name == "music")
-                               .Project().To<IndexBlogPostViewModel>();
+                .Where(p => p.Tag.Name == "music")
+                .Project().To<MusicPostViewModel>();
 
 
             return this.View(allPosts);
@@ -175,9 +175,9 @@
         public ActionResult Sport()
         {
             var allPosts = this.posts.All()
-                               .Where(p => p.Tag.Name == "sport")
-                               .Project()
-                               .To<IndexBlogPostViewModel>();
+                .Where(p => p.Tag.Name == "sport")
+                .Project()
+                .To<SportPostViewModel>();
 
             return this.View(allPosts);
         }
@@ -187,7 +187,7 @@
             var allPosts = this.posts.All()
                .Where(p => p.Tag.Name == "fun")
                .Project()
-               .To<IndexBlogPostViewModel>();
+               .To<IndexPostViewModel>();
 
             return this.View(allPosts);
         }
@@ -195,9 +195,9 @@
         public ActionResult Programming()
         {
             var allPosts = this.posts.All()
-                               .Where(p => p.Tag.Name == "programming")
-                               .Project()
-                               .To<IndexBlogPostViewModel>();
+                    .Where(p => p.Tag.Name == "programming")
+                    .Project()
+                    .To<ProgrammingPostViewModel>();
 
             return this.View(allPosts);
         }

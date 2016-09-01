@@ -9,7 +9,7 @@
     {
         private const int DefaultLength = 50;
 
-        public static IEnumerable<IndexBlogPostViewModel> GetFirstIndexPosts(IList<IndexBlogPostViewModel> all, int length = DefaultLength)
+        public static IEnumerable<IndexPostViewModel> GetFirstIndexPosts(IList<IndexPostViewModel> all, int length = DefaultLength)
         {
             int realLength = Math.Min(all.Count, length);
             var result = all.OrderByDescending(p => p.CreatedOn).Take(realLength);
