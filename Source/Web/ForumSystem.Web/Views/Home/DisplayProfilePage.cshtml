@@ -2,31 +2,31 @@
 @model Tuple<ForumSystem.Web.Models.DisplayViewModel, IList<ForumSystem.Web.ViewModels.Questions.QuestionDisplayViewModel>>
 @if (Model.Item1 != null)
 {
-<div class="panel panel-default">
-    <div class="media-left">
-        <h1>
-            <img class="userPhoto" src="@Url.Action("UserPhotos", "Home")" />
-        </h1>
-    </div>
-    <div class="media-body">
+    <div class="panel panel-default">
+        <div class="media-left">
+            <h1>
+                <img class="userPhoto" src="@Url.Action("UserPhotos", "Home")" />
+            </h1>
+        </div>
+        <div class="media-body">
 
             <div class="media-heading">
                 <h2>@Model.Item1.FullName</h2>
             </div>
             <p>(@Model.Item1.Email)</p>
             <p>Points: @Model.Item1.Points</p>
+        </div>
     </div>
-</div>
-<div class="panel panel-default">
-    Asq new question.
-    <p><i>@Html.ActionLink("Write...", "Ask", "Questions")</i></p>
-</div>
+    <div class="panel panel-default">
+        Asq new question.
+        <p><i>@Html.ActionLink("Write...", "Ask", "Questions")</i></p>
+    </div>
     <div class="panel panel-default">
         @foreach (var post in Model.Item2.ToList())
         {
             <div class="panel-heading">
                 <p>
-                    <img src="@Url.Action("UserPhotos", "Home")" height="28" width="28"/>
+                    <img src="@Url.Action("UserPhotos", "Home")" height="28" width="28" />
                     <h4> @post.Author.FullName posted.</h4>
                 </p>
                 <p>
@@ -36,18 +36,18 @@
                 <h3>@post.Title</h3>
                 <p>
                     @Html.Raw(ТextТransformer.CutText(post.Content))
-                    <i>@Html.ActionLink("read more...", "ViewReadMore", "Questions", new {id = post.Id}, null)</i>
+                    <i>@Html.ActionLink("read more...", "ViewReadMore", "Questions", new { id = post.Id }, null)</i>
                 </p>
                 <span class="label label-success">
-                @Html.ActionLink("Add Comment", "Create", "Answer", new {id = post.Id}, null)
-            </span>
+                    @Html.ActionLink("Add Comment", "Create", "Answer", new { id = post.Id }, null)
+                </span>
                 <span class="label label-warning">
-                @Html.ActionLink("Delete", "Delete", "Questions", new {id = post.Id}, null)
-            </span>
+                    @Html.ActionLink("Delete", "Delete", "Questions", new { id = post.Id }, null)
+                </span>
             </div>
             <div class="panel-body">
-                 @Html.ActionLink("View Comments", "ViewAnswersOfPost", "Answer", new { id = post.Id }, null)
-                <hr/>           
+                @Html.ActionLink("View Comments", "ViewAnswersOfPost", "Answer", new { id = post.Id }, null)
+                <hr />
             </div>
         }
     </div>

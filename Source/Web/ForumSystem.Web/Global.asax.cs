@@ -16,7 +16,7 @@
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             var autoMapperConfig = new AutoMapperConfig(Assembly.GetExecutingAssembly());
-             autoMapperConfig.Execute();
+            autoMapperConfig.Execute();
         }
     }
 }
