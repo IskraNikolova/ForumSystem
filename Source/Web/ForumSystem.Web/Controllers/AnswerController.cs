@@ -17,18 +17,16 @@
     {
         private readonly IDeletableEntityRepository<Answer> answers;
         private readonly IDeletableEntityRepository<ApplicationUser> users;
-        private readonly IDeletableEntityRepository<Post> posts;
 
         private readonly ISanitizer sanitizer;
 
         public AnswerController(IDeletableEntityRepository<Answer> answers,
             IDeletableEntityRepository<ApplicationUser> users,
-            IDeletableEntityRepository<Post> posts,
             ISanitizer sanitizer)
         {
             this.answers = answers;
             this.users = users;
-            this.posts = posts;
+     
             this.sanitizer = sanitizer;
         }
 
@@ -211,13 +209,13 @@
 
         public ActionResult ViewAnswersOfPost(int id)
         {
-            var answers = this.answers
+            var answerViewModels = this.answers
                 .All()
                 .Where(a => a.PostId == id)
                 .Project()
                 .To<AnswerViewModel>();
 
-            return this.View(answers);
+            return this.View(answerViewModels);
         }
     }
 }

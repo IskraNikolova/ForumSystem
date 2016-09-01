@@ -20,7 +20,9 @@ namespace ForumSystem.Web.Controllers
         {
         }
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public ManageController(
+            ApplicationUserManager userManager,
+            ApplicationSignInManager signInManager)
         {
             this.UserManager = userManager;
             this.SignInManager = signInManager;

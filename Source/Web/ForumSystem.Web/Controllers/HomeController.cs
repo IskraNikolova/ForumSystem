@@ -22,7 +22,9 @@
         private readonly IDeletableEntityRepository<Post> posts;
         private readonly IDeletableEntityRepository<ApplicationUser> users;
 
-        public HomeController(IDeletableEntityRepository<Post> posts, IDeletableEntityRepository<ApplicationUser> users)
+        public HomeController(
+            IDeletableEntityRepository<Post> posts, 
+            IDeletableEntityRepository<ApplicationUser> users)
         {
             this.posts = posts;
             this.users = users;

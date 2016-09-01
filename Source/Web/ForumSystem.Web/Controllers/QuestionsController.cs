@@ -34,6 +34,7 @@
             this.tags = tags;
             this.sanitizer = sanitizer;
         }
+
         public ActionResult Index()
         {
             var allPosts = this.posts.All()
@@ -187,7 +188,7 @@
             var allPosts = this.posts.All()
                .Where(p => p.Tag.Name == "fun")
                .Project()
-               .To<IndexPostViewModel>();
+               .To<FunPostViewModel>();
 
             return this.View(allPosts);
         }
